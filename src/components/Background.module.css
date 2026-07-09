@@ -1,0 +1,102 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glowLayer {
+  position: absolute;
+  inset: -20%;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  filter: blur(140px);
+  opacity: 0.05;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.glowOne {
+  width: 560px;
+  height: 560px;
+  top: 6%;
+  left: 4%;
+  animation: floatOne 22s ease-in-out infinite alternate;
+}
+
+.glowTwo {
+  width: 620px;
+  height: 620px;
+  top: 42%;
+  right: 2%;
+  animation: floatTwo 25s ease-in-out infinite alternate;
+  animation-delay: -6s;
+}
+
+.glowThree {
+  width: 480px;
+  height: 480px;
+  bottom: 4%;
+  left: 28%;
+  animation: floatThree 18s ease-in-out infinite alternate;
+  animation-delay: -11s;
+}
+
+@keyframes floatOne {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.04;
+  }
+  to {
+    transform: translate(40px, 30px) scale(1.12);
+    opacity: 0.07;
+  }
+}
+
+@keyframes floatTwo {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.03;
+  }
+  to {
+    transform: translate(-50px, 25px) scale(1.08);
+    opacity: 0.06;
+  }
+}
+
+@keyframes floatThree {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.03;
+  }
+  to {
+    transform: translate(30px, -35px) scale(1.1);
+    opacity: 0.05;
+  }
+}
+
+.mesh {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 30%, rgba(var(--accent-rgb), 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(var(--accent-rgb), 0.04) 0%, transparent 50%);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow {
+    animation: none !important;
+  }
+}

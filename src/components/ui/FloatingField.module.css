@@ -1,0 +1,75 @@
+.group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  width: 100%;
+  padding: 1.5rem 1rem 0.5rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  resize: vertical;
+}
+
+.field:not(textarea) {
+  height: 56px;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.label {
+  position: absolute;
+  left: 1rem;
+  top: 1.05rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 180ms ease, color 180ms ease, top 180ms ease;
+}
+
+.labelFloated {
+  top: 0.5rem;
+  transform: scale(0.72);
+  color: var(--accent);
+}
+
+.fieldError {
+  border-color: var(--danger);
+  animation: shake 320ms ease;
+}
+
+.groupError .label {
+  color: var(--danger);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fieldError {
+    animation: none;
+  }
+}

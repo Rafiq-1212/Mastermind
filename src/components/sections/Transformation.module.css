@@ -1,0 +1,208 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 4rem auto;
+}
+
+.sectionTag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.12);
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.sectionHeader p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.box {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.tabToggle {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--card);
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 300ms ease;
+}
+
+.tabBtn:hover {
+  color: var(--text);
+}
+
+.tabBtnBefore {
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.12);
+}
+
+.tabBtnAfter {
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent) !important;
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+}
+
+.shiftCard {
+  padding: 3rem;
+  border-radius: 24px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.shiftBefore {
+  background: rgba(239, 68, 68, 0.02);
+  border: 1px solid rgba(239, 68, 68, 0.1);
+}
+
+.shiftAfter {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.cardIndicator {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.cardIndicatorGold {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.shiftCard h3 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.shiftIntro {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.shiftList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.shiftList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.iconBad {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: #ef4444;
+}
+
+.iconGood {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--accent);
+}
+
+.shiftList strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 1.75rem;
+  }
+
+  .shiftCard {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .shiftCard h3 {
+    font-size: 1.4rem;
+  }
+
+  .cardIndicator,
+  .cardIndicatorGold {
+    position: static;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .tabToggle {
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 0.25rem;
+  }
+
+  .tabBtn {
+    border-radius: 8px;
+  }
+}

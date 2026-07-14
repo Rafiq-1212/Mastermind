@@ -145,3 +145,35 @@
   top: -10%;
   left: 6%;
 }
+
+/* The goat ring/logo/widget cluster only occupies the left ~65-70% of the
+   .stage box (by design, so it can sit beside the widget/chips in the
+   desktop two-column layout). On mobile the stage is the only thing on
+   screen, so that unused right-hand margin reads as the whole visual
+   being shifted left. Shift every left-anchored child right by the same
+   amount to recenter the cluster as a whole, without touching desktop. */
+@media (max-width: 767px) {
+  .glow {
+    left: calc(-3.5% + 17.25%);
+  }
+
+  .ring {
+    left: 17.25%;
+  }
+
+  .logoWrap {
+    left: 17.25%;
+  }
+
+  .widget {
+    left: calc(20.5% + 17.25%);
+  }
+
+  .chipTeam {
+    left: 17.25%;
+  }
+
+  .chipBadge {
+    left: calc(6% + 17.25%);
+  }
+}

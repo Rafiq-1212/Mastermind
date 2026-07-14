@@ -26,8 +26,9 @@ export default function Button({
   showArrow = false,
 }: ButtonProps) {
   const reduceMotion = useSafeReducedMotion();
-  const whileHover = reduceMotion ? undefined : { y: -3, scale: 1.02 };
+  const whileHover = reduceMotion ? undefined : { y: -2, scale: 1.04 };
   const whileTap = reduceMotion ? undefined : { scale: 0.97 };
+  const springTransition = { type: "spring" as const, stiffness: 420, damping: 20 };
   const cls = `${styles.btn} ${styles[variant]} ${className}`;
 
   const content = (
@@ -43,14 +44,28 @@ export default function Button({
 
   if (href) {
     return (
-      <motion.a href={href} className={cls} whileHover={whileHover} whileTap={whileTap} onClick={onClick}>
+      <motion.a
+        href={href}
+        className={cls}
+        whileHover={whileHover}
+        whileTap={whileTap}
+        transition={springTransition}
+        onClick={onClick}
+      >
         {content}
       </motion.a>
     );
   }
 
   return (
-    <motion.button type={type} className={cls} whileHover={whileHover} whileTap={whileTap} onClick={onClick}>
+    <motion.button
+      type={type}
+      className={cls}
+      whileHover={whileHover}
+      whileTap={whileTap}
+      transition={springTransition}
+      onClick={onClick}
+    >
       {content}
     </motion.button>
   );

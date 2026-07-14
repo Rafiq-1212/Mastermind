@@ -16,10 +16,10 @@ export default function Home() {
       <main className="relative z-[1]">
         <Hero />
         <Transformation />
-        <Mentor />
+        <Mentor portraitSrc="/men-nobg.png" />
         <Features />
         <SocialProof />
-        <FAQ />
+        {/* <FAQ /> */}
         <FinalCTA />
       </main>
       <Footer />

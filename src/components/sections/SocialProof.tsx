@@ -63,9 +63,9 @@ export default function SocialProof() {
   return (
     <section id="testimonials" className={styles.section}>
       <Reveal className={styles.sectionHeader}>
-        <span className={styles.sectionTag}>Social Proof</span>
+        <span className={styles.sectionTag}>Trusted & Proven</span>
         <h2>Real Success Stories</h2>
-        <p>Results and companies pending — content to be replaced with real client outcomes.</p>
+        <p>Trusted by ambitious entrepreneurs and backed by proven results.</p>
       </Reveal>
 
       <Reveal stagger className={styles.grid}>
@@ -99,7 +99,13 @@ export default function SocialProof() {
                   <>
                     {t.posterUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={t.posterUrl} alt="" className={styles.posterImg} />
+                      <img
+                        src={t.posterUrl}
+                        alt=""
+                        className={styles.posterImg}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     ) : (
                       <div className={styles.avatarFallback}>
                         <User size={28} aria-hidden="true" />

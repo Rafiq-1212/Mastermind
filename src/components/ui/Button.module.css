@@ -24,13 +24,21 @@
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+/* Shimmer sweep: a diagonal highlight band that slides across the button on
+   hover. transform-only so it stays GPU-accelerated (no layout/paint cost). */
 .primary::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 60%);
-  opacity: 0;
-  transition: opacity 200ms ease;
+  inset: -20% -60%;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 60%
+  );
+  transform: translateX(-60%);
+  pointer-events: none;
+  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .primary:hover {
@@ -38,7 +46,7 @@
 }
 
 .primary:hover::before {
-  opacity: 1;
+  transform: translateX(60%);
 }
 
 .secondary {

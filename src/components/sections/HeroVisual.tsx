@@ -1,20 +1,69 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import type { MouseEvent } from "react";
 import { TrendingUp, Users, Sparkles } from "lucide-react";
 import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
+import { useIsMobile } from "@/lib/useIsMobile";
+import { useIsDesktop } from "@/lib/useIsDesktop";
 import styles from "./HeroVisual.module.css";
 
 export default function HeroVisual() {
   const reduceMotion = useSafeReducedMotion();
+  const isMobile = useIsMobile();
+  const isDesktop = useIsDesktop();
+  const parallaxEnabled = isDesktop && !reduceMotion;
 
+  // Desktop-only cursor parallax: the whole stage drifts a few px toward the
+  // pointer, spring-smoothed. Disabled on touch devices and reduced-motion.
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 150, damping: 20, mass: 0.5 });
+  const springY = useSpring(pointerY, { stiffness: 150, damping: 20, mass: 0.5 });
+  const parallaxX = useTransform(springX, [-0.5, 0.5], [-12, 12]);
+  const parallaxY = useTransform(springY, [-0.5, 0.5], [-9, 9]);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!parallaxEnabled) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    pointerX.set((e.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    pointerX.set(0);
+    pointerY.set(0);
+  };
+
+  // Mobile gets shorter travel distance and slower cadence — same floating
+  // language, lighter GPU/battery cost on handhelds.
   const floatSlow = reduceMotion
     ? undefined
-    : { y: [0, -14, 0], transition: { duration: 7, repeat: Infinity, ease: "easeInOut" as const } };
+    : {
+        y: isMobile ? [0, -7, 0] : [0, -14, 0],
+        transition: { duration: isMobile ? 8.5 : 7, repeat: Infinity, ease: "easeInOut" as const },
+      };
   const floatFast = reduceMotion
     ? undefined
-    : { y: [0, 12, 0], transition: { duration: 5.5, repeat: Infinity, ease: "easeInOut" as const, delay: 0.4 } };
+    : {
+        y: isMobile ? [0, 6, 0] : [0, 12, 0],
+        transition: {
+          duration: isMobile ? 7 : 5.5,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+          delay: 0.4,
+        },
+      };
+  // The hero image itself: same float cadence plus a slight, slow rotation —
+  // subtle enough to read as "alive," not spinning.
+  const logoFloat = reduceMotion
+    ? undefined
+    : {
+        y: isMobile ? [0, -7, 0] : [0, -14, 0],
+        rotate: isMobile ? [-1, 1, -1] : [-2, 2, -2],
+        transition: { duration: isMobile ? 8.5 : 7, repeat: Infinity, ease: "easeInOut" as const },
+      };
   const spin = reduceMotion
     ? undefined
     : { rotate: 360, transition: { duration: 40, repeat: Infinity, ease: "linear" as const } };
@@ -23,13 +72,21 @@ export default function HeroVisual() {
     : { opacity: [0.7, 1, 0.7], transition: { duration: 6, repeat: Infinity, ease: "easeInOut" as const } };
 
   return (
-    <div className={styles.visual} aria-hidden="true">
-      <div className={styles.stage}>
+    <div
+      className={styles.visual}
+      aria-hidden="true"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.div
+        className={styles.stage}
+        style={parallaxEnabled ? { x: parallaxX, y: parallaxY } : undefined}
+      >
         <motion.div className={styles.glow} animate={pulse} />
 
         {/* <motion.div className={styles.ring} animate={spin} /> */}
 
-        <motion.div className={styles.logoWrap} animate={floatSlow}>
+        <motion.div className={styles.logoWrap} animate={logoFloat}>
           <Image
             src="/goat-logo.png"
             alt=""
@@ -63,7 +120,7 @@ export default function HeroVisual() {
           <Sparkles size={14} className={styles.chipIcon} />
           <span>CEO Freedom</span>
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }

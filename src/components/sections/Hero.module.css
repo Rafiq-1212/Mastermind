@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   padding-block: clamp(7rem, 6rem + 3vw, 8rem) clamp(3rem, 2.5rem + 2vw, 4rem);
-  padding-inline: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  padding-inline: clamp(16px, 12px + 1.6vw, 32px);
   display: flex;
   align-items: center;
   z-index: 1;

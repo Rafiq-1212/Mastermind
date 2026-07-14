@@ -2,7 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding-block: clamp(4rem, 3rem + 4vw, 6rem);
-  padding-inline: clamp(1.5rem, 0.5rem + 4vw, 2rem);
+  padding-inline: clamp(16px, 12px + 1.6vw, 32px);
   position: relative;
   z-index: 1;
 }
@@ -42,6 +42,10 @@
   display: flex;
   flex-direction: column;
   gap: clamp(3.5rem, 2.5rem + 5vw, 6rem);
+  /* Guards against the alternating left/right reveal's horizontal offset
+     ever being visible pre-hydration (useIsMobile briefly reports false
+     during the SSR-safe first paint, before settling to its real value). */
+  overflow-x: hidden;
 }
 
 .row {

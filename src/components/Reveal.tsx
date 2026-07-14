@@ -2,8 +2,14 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
-import { fadeUp, staggerContainer } from "@/lib/motion-variants";
+import {
+  fadeUp,
+  fadeUpMobile,
+  staggerContainer,
+  staggerContainerMobile,
+} from "@/lib/motion-variants";
 import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 interface RevealProps {
   children: ReactNode;
@@ -14,10 +20,19 @@ interface RevealProps {
 
 export default function Reveal({ children, className = "", stagger = false, delay = 0 }: RevealProps) {
   const reduceMotion = useSafeReducedMotion();
+  const isMobile = useIsMobile();
 
   if (reduceMotion) {
     return <div className={className}>{children}</div>;
   }
+
+  const variants = stagger
+    ? isMobile
+      ? staggerContainerMobile
+      : staggerContainer
+    : isMobile
+      ? fadeUpMobile
+      : fadeUp;
 
   return (
     <motion.div
@@ -25,8 +40,8 @@ export default function Reveal({ children, className = "", stagger = false, dela
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
-      variants={stagger ? staggerContainer : fadeUp}
-      transition={stagger ? undefined : { delay }}
+      variants={variants}
+      transition={stagger ? undefined : { delay: isMobile ? delay * 0.6 : delay }}
     >
       {children}
     </motion.div>

@@ -19,8 +19,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(212, 175, 55, 0.12) 0%,
-    rgba(212, 175, 55, 0.045) 45%,
+    rgba(212, 175, 55, 0.095) 0%,
+    rgba(212, 175, 55, 0.035) 45%,
     transparent 72%
   );
   filter: blur(70px);
@@ -45,7 +45,7 @@
   height: 560px;
   top: 30%;
   left: 2%;
-  opacity: 0.035;
+  opacity: 0.028;
   animation: floatOne 28s ease-in-out infinite alternate;
 }
 
@@ -54,7 +54,7 @@
   height: 620px;
   top: 55%;
   right: 0%;
-  opacity: 0.03;
+  opacity: 0.024;
   animation: floatTwo 32s ease-in-out infinite alternate;
   animation-delay: -8s;
 }
@@ -86,7 +86,7 @@
   width: clamp(700px, 45vw + 350px, 1300px);
   height: clamp(420px, 26vw + 200px, 720px);
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.03) 45%, transparent 72%);
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.065) 0%, rgba(212, 175, 55, 0.024) 45%, transparent 72%);
   filter: blur(80px);
 }
 
@@ -111,6 +111,34 @@
 @media (max-width: 767px) {
   .particles {
     opacity: 0.3;
+  }
+
+  /* Lighter travel distance and slower cadence on mobile — calmer motion,
+     less GPU/battery cost on handhelds. */
+  .glowOne {
+    animation-duration: 34s;
+  }
+
+  .glowTwo {
+    animation-duration: 38s;
+  }
+
+  @keyframes floatOne {
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      transform: translate(14px, 12px) scale(1.04);
+    }
+  }
+
+  @keyframes floatTwo {
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      transform: translate(-16px, 10px) scale(1.03);
+    }
   }
 }
 

@@ -1,5 +1,11 @@
+"use client";
+
 import { Workflow, LineChart, Users, Compass } from "lucide-react";
+import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
+import { slideInLeft, slideInRight, slideInMobile } from "@/lib/motion-variants";
+import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
+import { useIsMobile } from "@/lib/useIsMobile";
 import styles from "./Features.module.css";
 
 const FEATURES = [
@@ -38,6 +44,9 @@ const FEATURES = [
 ];
 
 export default function Features() {
+  const reduceMotion = useSafeReducedMotion();
+  const isMobile = useIsMobile();
+
   return (
     <section id="features" className={styles.section}>
       <Reveal className={styles.sectionHeader}>
@@ -47,27 +56,65 @@ export default function Features() {
       </Reveal>
 
       <div className={styles.rows}>
-        {FEATURES.map((item, idx) => (
-          <Reveal key={item.title} className={`${styles.row} ${idx % 2 === 1 ? styles.reversed : ""}`}>
-            <div className={styles.text}>
-              <div className={styles.iconWrap}>
-                <item.icon size={22} aria-hidden="true" />
-              </div>
-              <h3>{item.title}</h3>
-              {item.lines.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-              <span className={styles.accentLine} />
-            </div>
+        {FEATURES.map((item, idx) => {
+          const variants = isMobile ? slideInMobile : idx % 2 === 1 ? slideInRight : slideInLeft;
 
-            <div className={styles.visual}>
-              <div className={styles.visualGlow} />
-              <div className={styles.visualPanel}>
-                <item.icon size={40} aria-hidden="true" />
+          if (reduceMotion) {
+            return (
+              <div
+                key={item.title}
+                className={`${styles.row} ${idx % 2 === 1 ? styles.reversed : ""}`}
+              >
+                <div className={styles.text}>
+                  <div className={styles.iconWrap}>
+                    <item.icon size={22} aria-hidden="true" />
+                  </div>
+                  <h3>{item.title}</h3>
+                  {item.lines.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                  <span className={styles.accentLine} />
+                </div>
+
+                <div className={styles.visual}>
+                  <div className={styles.visualGlow} />
+                  <div className={styles.visualPanel}>
+                    <item.icon size={40} aria-hidden="true" />
+                  </div>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            );
+          }
+
+          return (
+            <motion.div
+              key={item.title}
+              className={`${styles.row} ${idx % 2 === 1 ? styles.reversed : ""}`}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={variants}
+            >
+              <div className={styles.text}>
+                <div className={styles.iconWrap}>
+                  <item.icon size={22} aria-hidden="true" />
+                </div>
+                <h3>{item.title}</h3>
+                {item.lines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+                <span className={styles.accentLine} />
+              </div>
+
+              <div className={styles.visual}>
+                <div className={styles.visualGlow} />
+                <div className={styles.visualPanel}>
+                  <item.icon size={40} aria-hidden="true" />
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Inter } from "next/font/google";
+import { Manrope, Inter } from "next/font/google";
+import { BookCallModalProvider } from "@/components/BookCallModalContext";
+import BookCallModal from "@/components/BookCallModal";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
+  weight: ["700", "800"],
   display: "swap",
 });
 
@@ -32,8 +34,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+      <body>
+        <BookCallModalProvider>
+          {children}
+          <BookCallModal />
+        </BookCallModalProvider>
+      </body>
     </html>
   );
 }

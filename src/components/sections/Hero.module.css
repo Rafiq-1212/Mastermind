@@ -1,45 +1,56 @@
 .hero {
   position: relative;
-  min-height: 80vh;
-  padding: 6rem 2rem 4rem 2rem;
+  min-height: 100vh;
+  padding-block: clamp(7rem, 6rem + 3vw, 8rem) clamp(3rem, 2.5rem + 2vw, 4rem);
+  padding-inline: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
   display: flex;
   align-items: center;
-  justify-content: center;
   z-index: 1;
 }
 
+.grid {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(2rem, 1.4rem + 2vw, 3rem);
+}
+
 .content {
-  max-width: 900px;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  line-height: 1.2rem;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
   text-transform: uppercase;
   color: var(--accent);
   background: var(--card);
-  padding: 0.4rem 1.2rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   backdrop-filter: blur(10px);
 }
 
 .title {
-  font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.25rem, 1.3rem + 3vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   font-weight: 800;
 }
 
-.line,
 .highlight {
   display: block;
 }
@@ -47,51 +58,98 @@
 .subtitle {
   font-size: clamp(1rem, 0.92rem + 0.35vw, 1.15rem);
   color: var(--text-muted);
-  max-width: 760px;
-  margin-bottom: 2.5rem;
+  max-width: 520px;
+  margin-bottom: 2.25rem;
   line-height: 1.65;
 }
 
 .actions {
   display: flex;
   gap: 1.25rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3.5rem;
 }
 
-.metrics {
+.trustRow {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1rem;
+  padding: 1.25rem 1.5rem;
   border: 1px solid var(--border);
   background: var(--card);
-  border-radius: 24px;
+  border-radius: 20px;
   backdrop-filter: blur(10px);
 }
 
-.metricItem {
-  text-align: center;
+.trustGroup {
+  display: flex;
+  align-items: center;
 }
 
-.metricItem h3 {
-  font-size: 2rem;
+.divider {
+  display: none;
+}
+
+.trustItem h3 {
+  font-size: 0.95rem;
   color: var(--accent);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
   font-weight: 800;
+  white-space: nowrap;
 }
 
-.metricItem p {
-  font-size: 0.75rem;
+.trustItem p {
+  font-size: 0.68rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 .divider {
   width: 1px;
-  height: 40px;
+  height: 34px;
   background: var(--border);
+  margin: 0 1.25rem;
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .subtitle {
+    max-width: 620px;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .badge {
+    align-self: center;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .trustRow {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -105,16 +163,5 @@
   .actions > button {
     width: 100%;
     text-align: center;
-  }
-
-  .metrics {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-
-  .divider {
-    width: 80px;
-    height: 1px;
   }
 }

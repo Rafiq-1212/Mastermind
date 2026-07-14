@@ -1,7 +1,8 @@
 .section {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 6rem 2rem;
+  padding-block: clamp(4rem, 3rem + 4vw, 6rem);
+  padding-inline: clamp(1.5rem, 0.5rem + 4vw, 2rem);
   position: relative;
   z-index: 1;
 }
@@ -9,11 +10,11 @@
 .sectionHeader {
   text-align: center;
   max-width: 750px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto clamp(2.75rem, 2rem + 3vw, 4.5rem) auto;
 }
 
 .sectionTag {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--accent);
@@ -21,188 +22,132 @@
   display: inline-block;
   padding: 0.3rem 1rem;
   border-radius: 999px;
-  background: rgba(var(--accent-rgb), 0.06);
-  border: 1px solid rgba(var(--accent-rgb), 0.12);
+  /* background: rgba(var(--accent-rgb), 0.06); */
   margin-bottom: 1rem;
 }
 
 .sectionHeader h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 1.35rem + 2vw, 2.5rem);
   margin-bottom: 1rem;
   line-height: 1.2;
 }
 
 .sectionHeader p {
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 0.87rem + 0.4vw, 1.05rem);
   line-height: 1.7;
 }
 
-.box {
-  max-width: 850px;
-  margin: 0 auto;
-}
-
-.tabToggle {
-  display: flex;
-  gap: 0.5rem;
-  background: var(--card);
-  padding: 0.35rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  margin-bottom: 2.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.tabBtn {
-  flex: 1;
-  padding: 0.85rem 1rem;
-  border-radius: 999px;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 300ms ease;
-}
-
-.tabBtn:hover {
-  color: var(--text);
-}
-
-.tabBtnBefore {
-  background: rgba(239, 68, 68, 0.08);
-  color: #ef4444 !important;
-  border: 1px solid rgba(239, 68, 68, 0.12);
-}
-
-.tabBtnAfter {
-  background: rgba(var(--accent-rgb), 0.1);
-  color: var(--accent) !important;
-  border: 1px solid rgba(var(--accent-rgb), 0.18);
-}
-
-.shiftCard {
-  padding: 3rem;
-  border-radius: 24px;
+.timeline {
   position: relative;
-  backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.25rem, 0.8rem + 2vw, 2rem);
 }
 
-.shiftBefore {
-  background: rgba(239, 68, 68, 0.02);
-  border: 1px solid rgba(239, 68, 68, 0.1);
-}
-
-.shiftAfter {
-  background: var(--card);
-  border: 1px solid var(--border);
-}
-
-.cardIndicator {
+.line {
   position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.18);
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+  top: 28px;
+  left: 6%;
+  right: 6%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.5) 10%,
+    rgba(212, 175, 55, 0.5) 90%,
+    transparent
+  );
 }
 
-.cardIndicatorGold {
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
   color: var(--accent);
-  border: 1px solid rgba(var(--accent-rgb), 0.25);
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 0 6px var(--bg), var(--shadow-soft);
 }
 
-.shiftCard h3 {
-  font-size: 1.75rem;
+.num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
-.shiftIntro {
-  font-size: 1rem;
+.step h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.step p {
+  font-size: 0.9rem;
   color: var(--text-muted);
-  margin-bottom: 2rem;
+  line-height: 1.55;
+  max-width: 240px;
 }
 
-.shiftList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.shiftList li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-.iconBad {
-  flex-shrink: 0;
-  margin-top: 0.2rem;
-  color: #ef4444;
-}
-
-.iconGood {
-  flex-shrink: 0;
-  margin-top: 0.2rem;
-  color: var(--accent);
-}
-
-.shiftList strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-@media (max-width: 600px) {
-  .section {
-    padding: 4rem 1.5rem;
+@media (max-width: 900px) {
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 380px;
+    margin: 0 auto;
   }
 
-  .sectionHeader h2 {
-    font-size: 1.75rem;
+  .line {
+    top: 0;
+    bottom: 0;
+    left: 27px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(212, 175, 55, 0.5) 8%,
+      rgba(212, 175, 55, 0.5) 92%,
+      transparent
+    );
   }
 
-  .shiftCard {
-    padding: 1.75rem 1.5rem;
+  .step {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.25rem;
   }
 
-  .shiftCard h3 {
-    font-size: 1.4rem;
+  .node {
+    flex-shrink: 0;
+    margin-bottom: 0;
   }
 
-  .cardIndicator,
-  .cardIndicatorGold {
-    position: static;
-    display: inline-block;
-    margin-bottom: 1rem;
+  .stepText {
+    min-width: 0;
+    flex: 1 1 auto;
   }
 
-  .tabToggle {
-    flex-direction: column;
-    border-radius: 12px;
-    padding: 0.25rem;
-  }
-
-  .tabBtn {
-    border-radius: 8px;
+  .step p {
+    max-width: none;
   }
 }
+

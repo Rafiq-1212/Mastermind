@@ -6,21 +6,21 @@ import styles from "./Framework.module.css";
 const FRAMEWORK = [
   {
     num: "01",
-    title: "The Founder Operating System",
-    tagline: "Think clearly. Decide boldly. Lead confidently.",
-    body: "Build your personal strategy cockpit. Create bulletproof decision-making frameworks, eliminate cognitive overload, and learn to master focus. Establish the core CEO routines that save hours weekly and keep you in the zone of high-leverage execution.",
+    title: "Strategy Call",
+    tagline: "A 60-minute diagnostic, not a sales pitch.",
+    body: "We map exactly what's capping your growth, your time, and your exit value — and whether we're a fit to fix it.",
   },
   {
     num: "02",
-    title: "The Founder Identity",
-    tagline: "Build discipline, influence, and relationships that compound.",
-    body: "Upgrade who you are as a leader. Learn how to speak, write, and command authority as a premium founder. Master high-impact networking, personal brand foundations, and the psychological habits required to lead a high-performing team without burning out.",
+    title: "Systems Roadmap",
+    tagline: "A clear plan, not another vague framework.",
+    body: "You leave with a 90-day roadmap to remove yourself from the decisions, delivery, and firefighting.",
   },
   {
     num: "03",
-    title: "The Founder Engine",
-    tagline: "Design a business that attracts customers, talent, and opportunities.",
-    body: "Assemble the engines of growth. Design scalable operations, build predictable client acquisition flows (incorporating AI-driven marketing systems), structure an irresistible offer, and draft systems for recruiting and managing high-tier talent.",
+    title: "Execution Partnership",
+    tagline: "We build it with you, not just tell you.",
+    body: "We work alongside your leadership team to install the systems — until the business runs without you.",
   },
 ];
 
@@ -28,9 +28,9 @@ export default function Framework() {
   return (
     <section id="framework" className={styles.section}>
       <Reveal className={styles.sectionHeader}>
-        <span className={styles.sectionTag}>THE BLUEPRINT</span>
-        <h2>Program Transformation Framework</h2>
-        <p>Our curriculum is structured to tackle every layer of business scaling over three immersive days.</p>
+        <span className={styles.sectionTag}>THE PROCESS</span>
+        <h2>How This Works</h2>
+        <p>Three steps from founder-dependent to independently scalable.</p>
       </Reveal>
 
       <Reveal stagger className={styles.grid}>

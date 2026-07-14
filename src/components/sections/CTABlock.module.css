@@ -1,0 +1,164 @@
+.section {
+  padding: 24px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 24px 28px;
+  border-radius: 20px;
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse 140% 120% at 50% 30%,
+    rgba(212, 162, 78, 0.07) 0%,
+    rgba(22, 19, 16, 0.55) 40%,
+    rgba(5, 4, 3, 0.85) 70%,
+    #000 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.cardDashed {
+  border-style: dashed;
+}
+
+.glow {
+  pointer-events: none;
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 220px;
+  background: radial-gradient(ellipse at center, rgba(212, 162, 78, 0.25), transparent 70%);
+  filter: blur(10px);
+}
+
+/* Static lightning-style light fractures — a baked-in SVG texture, not an
+   animation. Sits behind .content (which is position:relative + z-index:1),
+   so it never affects text contrast. background-size:cover keeps the streaks
+   proportional whether the card is compact or reused larger elsewhere. */
+.streaks {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 300'%3E%3Cdefs%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='1.4'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23b)' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='8,14 82,72 52,112 142,162 112,192 202,242' stroke='%23d4a24e' stroke-width='1.4' stroke-opacity='0.14'/%3E%3Cpolyline points='298,12 343,52 310,86 400,66 376,110 466,90' stroke='%23f0d9a8' stroke-width='1.2' stroke-opacity='0.1'/%3E%3Cpolyline points='372,212 414,176 448,226 498,196' stroke='%23d4a24e' stroke-width='1.3' stroke-opacity='0.12'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 162, 78, 0.3);
+  background: rgba(212, 162, 78, 0.08);
+  color: #d4a24e;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #e8b662, #d4a24e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtext {
+  color: #a3a3a3;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 380px;
+  margin: 0 0 16px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 25px rgba(212, 162, 78, 0.25);
+}
+
+.cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px rgba(212, 162, 78, 0.4);
+}
+
+.ctaArrow {
+  transition: transform 0.2s ease;
+}
+
+.cta:hover .ctaArrow {
+  transform: translateX(3px);
+}
+
+.cornerTop,
+.cornerBottom {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+
+.cornerTop {
+  top: 0;
+  left: 0;
+  border-top: 1px solid rgba(212, 162, 78, 0.4);
+  border-left: 1px solid rgba(212, 162, 78, 0.4);
+  border-radius: 20px 0 0 0;
+}
+
+.cornerBottom {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(212, 162, 78, 0.4);
+  border-right: 1px solid rgba(212, 162, 78, 0.4);
+  border-radius: 0 0 20px 0;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 28px 44px;
+  }
+
+  .headline {
+    font-size: 22px;
+  }
+
+  .subtext {
+    font-size: 13.5px;
+  }
+}

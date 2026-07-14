@@ -2,34 +2,36 @@
 
 :root {
   /* Surfaces */
-  --bg: #000000;
-  --bg-2: #0b0b0b;
-  --card: rgba(255, 255, 255, 0.03);
+  --bg: #090909;
+  --bg-2: #111111;
+  --card: rgba(255, 255, 255, 0.035);
 
   /* Text */
   --text: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.72);
+  --text-muted: #b5b5b5;
 
   /* Accent */
-  --accent: #c39a5c;
-  --accent-hover: #d4af7a;
-  --accent-rgb: 195, 154, 92;
+  --accent: #a4935d;
+  --accent-hover: #a4935d;
+  --accent-rgb: 212, 175, 55;
 
   /* Borders */
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: #c39a5c;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: #d4af37;
 
   /* Status (used sparingly, e.g. before/after contrast) */
   --danger: #ef4444;
 
   /* Fonts */
-  --font-heading: var(--font-montserrat), "Montserrat", sans-serif;
-  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    var(--font-manrope), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "SF Pro Display", var(--font-inter), "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
 
   /* Shadows */
-  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.35);
-  --shadow-accent: 0 8px 30px rgba(var(--accent-rgb), 0.18);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --shadow-accent: 0 8px 30px rgba(var(--accent-rgb), 0.2);
 }
 
 * {
@@ -48,10 +50,17 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
+  font-weight: 500;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 h1,

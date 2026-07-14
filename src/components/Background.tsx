@@ -11,12 +11,13 @@ export default function Background() {
 
   return (
     <div className={styles.wrapper} aria-hidden="true">
+      <div className={styles.halfMoon} />
       <motion.div className={styles.glowLayer} style={{ y: parallaxY }}>
         <div className={`${styles.glow} ${styles.glowOne}`} />
         <div className={`${styles.glow} ${styles.glowTwo}`} />
-        <div className={`${styles.glow} ${styles.glowThree}`} />
       </motion.div>
-      <div className={styles.mesh} />
+      <div className={styles.bottomGlow} />
+      <div className={styles.particles} />
       <div className={styles.noise} />
     </div>
   );

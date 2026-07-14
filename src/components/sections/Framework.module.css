@@ -13,7 +13,7 @@
 }
 
 .sectionTag {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--accent);
@@ -22,8 +22,16 @@
   padding: 0.3rem 1rem;
   border-radius: 999px;
   background: rgba(var(--accent-rgb), 0.06);
-  border: 1px solid rgba(var(--accent-rgb), 0.12);
+  /* border: 1px solid rgba(var(--accent-rgb), 0.12); */
   margin-bottom: 1rem;
+}
+
+.child{
+  font-size:2rem;
+}
+
+.para{
+  font-size:12rem;
 }
 
 .sectionHeader h2 {

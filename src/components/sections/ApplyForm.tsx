@@ -1,227 +1,235 @@
-"use client";
+// "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Check } from "lucide-react";
-import Reveal from "@/components/Reveal";
-import Card from "@/components/ui/Card";
-import Button from "@/components/ui/Button";
-import FloatingField from "@/components/ui/FloatingField";
-import Select from "@/components/ui/Select";
-import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
-import styles from "./ApplyForm.module.css";
+// import { useState } from "react";
+// import { AnimatePresence, motion } from "framer-motion";
+// import { Check } from "lucide-react";
+// import Reveal from "@/components/Reveal";
+// import Card from "@/components/ui/Card";
+// import Button from "@/components/ui/Button";
+// import FloatingField from "@/components/ui/FloatingField";
+// import Select from "@/components/ui/Select";
+// import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
+// import styles from "./ApplyForm.module.css";
 
-const ROLE_OPTIONS = [
-  { value: "founder", label: "Founder / CEO (80% Cohort)" },
-  { value: "creator", label: "Creator / Business Brand (20% Cohort)" },
-];
+// const ROLE_OPTIONS = [
+//   { value: "founder_ceo", label: "Founder / CEO" },
+//   { value: "co_founder", label: "Co-Founder" },
+//   { value: "managing_director", label: "Managing Director" },
+//   { value: "other", label: "Other" },
+// ];
 
-const REVENUE_OPTIONS = [
-  { value: "under_6L", label: "Under ₹6,00,000 / month" },
-  { value: "6L_10L", label: "₹6,00,000 – ₹10,00,000 / month" },
-  { value: "10L_15L", label: "₹10,00,000 – ₹15,00,000 / month" },
-  { value: "over_15L", label: "Over ₹15,00,000 / month" },
-];
+// const REVENUE_OPTIONS = [
+//   { value: "3_4cr", label: "₹3–4 Cr / year" },
+//   { value: "4_6cr", label: "₹4–6 Cr / year" },
+//   { value: "6_10cr", label: "₹6–10 Cr / year" },
+//   { value: "10cr_plus", label: "Above ₹10 Cr / year" },
+// ];
 
-const INITIAL_FORM = {
-  name: "",
-  email: "",
-  age: "",
-  company: "",
-  revenue: "",
-  role: "founder",
-  bottleneck: "",
-};
+// const WHAT_TO_EXPECT = [
+//   "We map exactly what's capping your growth",
+//   "You leave with a clear next step, not a pitch",
+//   "100% confidential, no obligation",
+// ];
 
-export default function ApplyForm() {
-  const [formData, setFormData] = useState(INITIAL_FORM);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formError, setFormError] = useState("");
-  const reduceMotion = useSafeReducedMotion();
+// const INITIAL_FORM = {
+//   name: "",
+//   email: "",
+//   company: "",
+//   revenue: "",
+//   role: "founder_ceo",
+//   bottleneck: "",
+// };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (formError) setFormError("");
-  };
+// export default function ApplyForm() {
+//   const [formData, setFormData] = useState(INITIAL_FORM);
+//   const [formSubmitted, setFormSubmitted] = useState(false);
+//   const [formError, setFormError] = useState("");
+//   const reduceMotion = useSafeReducedMotion();
 
-  const handleSelectChange = (name: string) => (value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (formError) setFormError("");
-  };
+//   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//     if (formError) setFormError("");
+//   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.age || !formData.company || !formData.revenue) {
-      setFormError("Please fill in all required fields to submit your application.");
-      return;
-    }
+//   const handleSelectChange = (name: string) => (value: string) => {
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//     if (formError) setFormError("");
+//   };
 
-    const parsedAge = parseInt(formData.age);
-    if (isNaN(parsedAge) || parsedAge >= 30) {
-      setFormError("This program is strictly designed for founders & creators under 30 years old.");
-      return;
-    }
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
 
-    setFormSubmitted(true);
-    setFormError("");
-  };
+//     if (!formData.name || !formData.email || !formData.company || !formData.revenue) {
+//       setFormError("Please fill in all required fields to request your call.");
+//       return;
+//     }
 
-  return (
-    <section id="apply" className={styles.section}>
-      <div className={styles.container}>
-        <Reveal className={styles.intro}>
-          <span className="gradientAccent">STRICTLY LIMITED COHORT</span>
-          <h2>Apply for the Residency</h2>
-          <p>
-            This is a premium, high-ticket, transformational experience. Admission is strictly via
-            application and interview to ensure peer quality.
-          </p>
-          <Card className={styles.priceAnchor} hoverable={false}>
-            <span className={styles.priceLabel}>PROGRAM INVESTMENT</span>
-            <h3>&#8377;1,50,000+</h3>
-            <p>
-              Includes premium 3-day luxury residency boarding, meals, curriculum templates, and
-              post-residency mentorship.
-            </p>
-          </Card>
-        </Reveal>
+//     try {
+//       const response = await fetch("/api/apply", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(formData),
+//       });
 
-        <Reveal delay={0.15}>
-          <Card className={styles.formBox} hoverable={false}>
-            <AnimatePresence mode="wait">
-              {formSubmitted ? (
-                <motion.div
-                  key="success"
-                  className={styles.success}
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                >
-                  <div className={styles.successIcon}>
-                    <Check size={30} aria-hidden="true" />
-                  </div>
-                  <h3>Application Received</h3>
-                  <p>
-                    Thank you, <strong>{formData.name}</strong>. We have successfully received your
-                    application for the 10X Founder Residency.
-                  </p>
-                  <p className={styles.successNext}>
-                    Our coordinator will review your company details and schedule a 15-minute
-                    qualification call via <strong>{formData.email}</strong> within 24 hours.
-                  </p>
-                  <Button
-                    variant="secondary"
-                    className={styles.resetBtn}
-                    onClick={() => {
-                      setFormSubmitted(false);
-                      setFormData(INITIAL_FORM);
-                    }}
-                  >
-                    Submit another application
-                  </Button>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  onSubmit={handleSubmit}
-                  className={styles.form}
-                  initial={reduceMotion ? false : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {formError && (
-                    <div className={styles.errorAlert} role="alert">
-                      {formError}
-                    </div>
-                  )}
+//       const data = await response.json();
 
-                  <FloatingField
-                    label="Full Name *"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Adhithya Kumar"
-                    required
-                    error={!!formError && !formData.name}
-                  />
+//       if (!response.ok) {
+//         setFormError(data.message || "Something went wrong. Please try again.");
+//         return;
+//       }
 
-                  <div className={styles.grid2}>
-                    <FloatingField
-                      label="Work Email *"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="e.g. adhi@yourcompany.com"
-                      required
-                      error={!!formError && !formData.email}
-                    />
-                    <FloatingField
-                      label="Age *"
-                      name="age"
-                      type="number"
-                      value={formData.age}
-                      onChange={handleInputChange}
-                      placeholder="Strictly < 30 (e.g. 25)"
-                      min="18"
-                      max="40"
-                      required
-                      error={!!formError && (!formData.age || parseInt(formData.age) >= 30)}
-                    />
-                  </div>
+//       setFormSubmitted(true);
+//       setFormError("");
+//     } catch (error) {
+//       console.error(error);
+//       setFormError("Server error. Please try again.");
+//     }
+//   };
 
-                  <div className={styles.grid2}>
-                    <FloatingField
-                      label="Company / Project Name *"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      placeholder="e.g. Apex Digital"
-                      required
-                      error={!!formError && !formData.company}
-                    />
-                    <Select
-                      label="Primary Role *"
-                      name="role"
-                      value={formData.role}
-                      onValueChange={handleSelectChange("role")}
-                      options={ROLE_OPTIONS}
-                      required
-                    />
-                  </div>
+//   return (
+//     <section id="book" className={styles.section}>
+//       <div className={styles.container}>
+//         <Reveal className={styles.intro}>
+//           <span className="gradientAccent">LIMITED AVAILABILITY</span>
+//           <h2>Ready to Build a Business That Runs Without You?</h2>
+//           <p>
+//             Book a 1:1 strategy call. We&apos;ll map your bottlenecks and show you what it takes to
+//             scale past &#8377;3&ndash;4 Cr without depending on you.
+//           </p>
+//           <ul className={styles.expectList}>
+//             {WHAT_TO_EXPECT.map((line) => (
+//               <li key={line}>
+//                 <Check size={16} aria-hidden="true" />
+//                 <span>{line}</span>
+//               </li>
+//             ))}
+//           </ul>
+//         </Reveal>
 
-                  <Select
-                    label="Current Monthly Revenue (INR) *"
-                    name="revenue"
-                    value={formData.revenue}
-                    onValueChange={handleSelectChange("revenue")}
-                    options={REVENUE_OPTIONS}
-                    placeholder="Select range..."
-                    required
-                    error={!!formError && !formData.revenue}
-                  />
+//         <Reveal delay={0.15}>
+//           <Card className={styles.formBox} hoverable={false}>
+//             <AnimatePresence mode="wait">
+//               {formSubmitted ? (
+//                 <motion.div
+//                   key="success"
+//                   className={styles.success}
+//                   initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+//                   animate={{ opacity: 1, y: 0 }}
+//                   transition={{ duration: 0.35, ease: "easeOut" }}
+//                 >
+//                   <div className={styles.successIcon}>
+//                     <Check size={30} aria-hidden="true" />
+//                   </div>
+//                   <h3>Request Received</h3>
+//                   <p>
+//                     Thank you, <strong>{formData.name}</strong>. We&apos;ve received your strategy call
+//                     request.
+//                   </p>
+//                   <p className={styles.successNext}>
+//                     Our team will review your details and reach out within 24 hours to schedule your
+//                     call via <strong>{formData.email}</strong>.
+//                   </p>
+//                   <Button
+//                     variant="secondary"
+//                     className={styles.resetBtn}
+//                     onClick={() => {
+//                       setFormSubmitted(false);
+//                       setFormData(INITIAL_FORM);
+//                     }}
+//                   >
+//                     Submit another request
+//                   </Button>
+//                 </motion.div>
+//               ) : (
+//                 <motion.form
+//                   key="form"
+//                   onSubmit={handleSubmit}
+//                   className={styles.form}
+//                   initial={reduceMotion ? false : { opacity: 0 }}
+//                   animate={{ opacity: 1 }}
+//                   transition={{ duration: 0.3 }}
+//                 >
+//                   {formError && (
+//                     <div className={styles.errorAlert} role="alert">
+//                       {formError}
+//                     </div>
+//                   )}
 
-                  <FloatingField
-                    label="What is your biggest business bottleneck right now?"
-                    name="bottleneck"
-                    as="textarea"
-                    rows={3}
-                    value={formData.bottleneck}
-                    onChange={handleInputChange}
-                    placeholder="e.g. I am stuck firefighting client problems, I have no sales systems, or my team needs constant supervision..."
-                  />
+//                   <FloatingField
+//                     label="Full Name *"
+//                     name="name"
+//                     value={formData.name}
+//                     onChange={handleInputChange}
+//                     placeholder="e.g. Adhithya Kumar"
+//                     required
+//                     error={!!formError && !formData.name}
+//                   />
 
-                  <Button type="submit" variant="primary" className={styles.submitBtn}>
-                    Submit Qualification Application
-                  </Button>
-                  <p className={styles.formNotice}>* Vetting is strict. Only qualifying profiles will be contacted.</p>
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </Card>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
+//                   <FloatingField
+//                     label="Work Email *"
+//                     name="email"
+//                     type="email"
+//                     value={formData.email}
+//                     onChange={handleInputChange}
+//                     placeholder="e.g. adhi@yourcompany.com"
+//                     required
+//                     error={!!formError && !formData.email}
+//                   />
+
+//                   <div className={styles.grid2}>
+//                     <FloatingField
+//                       label="Company Name *"
+//                       name="company"
+//                       value={formData.company}
+//                       onChange={handleInputChange}
+//                       placeholder="e.g. Apex Digital"
+//                       required
+//                       error={!!formError && !formData.company}
+//                     />
+//                     <Select
+//                       label="Primary Role *"
+//                       name="role"
+//                       value={formData.role}
+//                       onValueChange={handleSelectChange("role")}
+//                       options={ROLE_OPTIONS}
+//                       required
+//                     />
+//                   </div>
+
+//                   <Select
+//                     label="Current Annual Revenue *"
+//                     name="revenue"
+//                     value={formData.revenue}
+//                     onValueChange={handleSelectChange("revenue")}
+//                     options={REVENUE_OPTIONS}
+//                     placeholder="Select range..."
+//                     required
+//                     error={!!formError && !formData.revenue}
+//                   />
+
+//                   <FloatingField
+//                     label="What's your biggest bottleneck right now?"
+//                     name="bottleneck"
+//                     as="textarea"
+//                     rows={3}
+//                     value={formData.bottleneck}
+//                     onChange={handleInputChange}
+//                     placeholder="e.g. I'm still the bottleneck on every major decision..."
+//                   />
+
+//                   <Button type="submit" variant="primary" className={styles.submitBtn}>
+//                     Book My Strategy Call
+//                   </Button>
+//                   <p className={styles.formNotice}>
+//                     By application only. Limited calls accepted each month.
+//                   </p>
+//                 </motion.form>
+//               )}
+//             </AnimatePresence>
+//           </Card>
+//         </Reveal>
+//       </div>
+//     </section>
+//   );
+// }

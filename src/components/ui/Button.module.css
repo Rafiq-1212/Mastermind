@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.9rem 2.25rem;
+  min-height: 44px;
+  padding: 0.55rem clamp(1.25rem, 1rem + 1vw, 1.5rem);
   border-radius: 999px;
   font-weight: 600;
   font-size: 1rem;
@@ -17,24 +18,23 @@
 }
 
 .primary {
-  background: var(--accent);
-  color: #000;
+  background: linear-gradient(135deg, #e8c973, var(--accent) 55%, #b8892e);
+  color: #16130a;
   box-shadow: var(--shadow-accent);
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .primary::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 60%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 60%);
   opacity: 0;
   transition: opacity 200ms ease;
 }
 
 .primary:hover {
-  background: var(--accent-hover);
-  box-shadow: 0 10px 28px rgba(var(--accent-rgb), 0.28);
+  box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.4);
 }
 
 .primary:hover::before {
@@ -44,11 +44,27 @@
 .secondary {
   background: transparent;
   color: var(--text);
-  border-color: var(--border);
+  border-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease,
+    box-shadow 200ms ease, backdrop-filter 200ms ease;
 }
 
 .secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--border-hover);
   color: var(--accent);
-  box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 200ms ease;
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
 }

@@ -1,33 +1,29 @@
 import Background from "@/components/Background";
-import Navbar from "@/components/Navbar";
+import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
 import Transformation from "@/components/sections/Transformation";
-import Philosophy from "@/components/sections/Philosophy";
-import Obstacles from "@/components/sections/Obstacles";
-import Framework from "@/components/sections/Framework";
-import Eligibility from "@/components/sections/Eligibility";
-import Outcomes from "@/components/sections/Outcomes";
-import Location from "@/components/sections/Location";
-import ApplyForm from "@/components/sections/ApplyForm";
+import Mentor from "@/components/sections/Mentor";
+import Features from "@/components/sections/Features";
+import SocialProof from "@/components/sections/SocialProof";
+import FAQ from "@/components/sections/FAQ";
+import FinalCTA from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen">
       <Background />
-      <Navbar />
       <main className="relative z-[1]">
         <Hero />
         <Transformation />
-        <Philosophy />
-        <Obstacles />
-        <Framework />
-        <Eligibility />
-        <Outcomes />
-        <Location />
-        <ApplyForm />
+        <Mentor />
+        <Features />
+        <SocialProof />
+        <FAQ />
+        <FinalCTA />
       </main>
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

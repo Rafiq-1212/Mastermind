@@ -1,99 +1,51 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
+import RevealItem from "@/components/RevealItem";
 import Card from "@/components/ui/Card";
-import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
 import styles from "./Obstacles.module.css";
 
-const OBSTACLES = [
+const BOTTLENECKS = [
   {
-    title: "Lack of Clarity",
-    quote: "I don't know exactly what to focus on.",
-    desc: "Without strategic direction, you scatter your focus across trivial tasks instead of high-leverage execution. You lack a roadmap for what comes next.",
+    title: "Everything Depends on You",
+    problem: "Your team waits for you to make every important decision.",
+    fix: "Build systems so your business can run without you every day.",
   },
   {
-    title: "Lack of Predictable Growth Systems",
-    quote: "I don't know how to generate consistent revenue.",
-    desc: "Relying on referrals or random marketing campaigns keeps your revenue volatile. You need built-in customer acquisition engines.",
+    title: "Sales Are Not Consistent",
+    problem: "Revenue goes up and down because there is no reliable growth system.",
+    fix: "Create a predictable system that brings in qualified customers consistently.",
   },
   {
-    title: "Lack of Operational Systems",
-    quote: "My business depends on me.",
-    desc: "If you take a week off, operations stall. You are stuck firefighting daily firestorms instead of building a self-sustaining asset.",
-  },
-  {
-    title: "Lack of People & Leadership Systems",
-    quote: "I don't know how to build and lead a great team.",
-    desc: "Hiring is a struggle, and delegation feels impossible. You struggle to attract, train, and trust high-performing talent.",
-  },
-  {
-    title: "Lack of CEO Identity",
-    quote: "I haven't become the person capable of leading a million-dollar company.",
-    desc: "You operate as a busy freelancer or operator, not a CEO. You haven't developed the discipline, habits, and mindset of an exceptional leader.",
+    title: "Always Busy, Never Growing",
+    problem: "You're stuck handling daily problems instead of growing the business.",
+    fix: "Focus on strategy while your team handles day-to-day operations.",
   },
 ];
 
 export default function Obstacles() {
-  const [active, setActive] = useState(0);
-  const reduceMotion = useSafeReducedMotion();
-
   return (
-    <section className={styles.section}>
+    <section id="bottlenecks" className={styles.section}>
       <Reveal className={styles.sectionHeader}>
-        <span className={styles.sectionTag}>THE ROADBLOCKS</span>
-        <h2>The 5 Root Obstacles Holding You Back</h2>
-        <p>
-          We break down growth into simple frameworks. To scale, you must break through these five
-          structural bottlenecks:
-        </p>
+        <span className={styles.sectionTag}>WHY GROWTH STOPS</span>
+        <h2>What's Really Holding You Back</h2>
+        <p>After ₹10 Cr, growth slows because your business needs better systems—not more hard work.</p>
       </Reveal>
 
-      <Reveal className={styles.layout}>
-        <div className={styles.list}>
-          {OBSTACLES.map((obs, idx) => (
-            <div
-              key={obs.title}
-              className={active === idx ? `${styles.item} ${styles.itemActive}` : styles.item}
-              onClick={() => setActive(idx)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setActive(idx);
-              }}
-            >
-              <div className={styles.number}>0{idx + 1}</div>
-              <div className={styles.title}>{obs.title}</div>
-            </div>
-          ))}
-        </div>
-
-        <Card className={styles.detailCard} hoverable={false}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <div className={styles.detailHeader}>
-                <span className={styles.detailNum}>BOTTLE-NECK 0{active + 1}</span>
-                <h3>{OBSTACLES[active].title}</h3>
+      <Reveal stagger className={styles.grid}>
+        {BOTTLENECKS.map((item) => (
+          <RevealItem key={item.title}>
+            <Card className={styles.card}>
+              <h3>{item.title}</h3>
+              <div className={styles.block}>
+                <span className={styles.blockLabel}>The Problem</span>
+                <p>{item.problem}</p>
               </div>
-              <p className={styles.quote}>&ldquo;{OBSTACLES[active].quote}&rdquo;</p>
-              <p className={styles.desc}>{OBSTACLES[active].desc}</p>
-              <div className={styles.solution}>
-                <span className={styles.solTag}>How the Residency solves it:</span>
-                <p>
-                  Over the three days, you will sit down, use our proprietary templates, and map out the
-                  exact system to eliminate this bottleneck permanently.
-                </p>
+              <div className={styles.block}>
+                <span className={styles.blockLabelGold}>Our Fix</span>
+                <p>{item.fix}</p>
               </div>
-            </motion.div>
-          </AnimatePresence>
-        </Card>
+            </Card>
+          </RevealItem>
+        ))}
       </Reveal>
     </section>
   );

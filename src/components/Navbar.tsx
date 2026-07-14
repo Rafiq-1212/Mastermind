@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Button from "./ui/Button";
-import styles from "./Navbar.module.css";
+import BookCallButton from "./BookCallButton";
+import styles from "./Navbar.module.css"; 
 
 const NAV_LINKS = [
   { href: "#transformation", label: "Transformation" },
   { href: "#framework", label: "Framework" },
-  { href: "#eligibility", label: "Eligibility" },
   { href: "#outcomes", label: "Outcomes" },
+  { href: "#proof", label: "Proof" },
 ];
 
 export default function Navbar() {
@@ -38,7 +38,7 @@ export default function Navbar() {
     <header className={styles.header}>
       <div className={styles.navContent}>
         <div className={styles.logo}>
-          <span className={styles.logoBadge}>3-DAY IMmersive</span>
+          <span className={styles.logoBadge}>FOR &#8377;3&ndash;4 CR FOUNDERS</span>
           <span className={styles.logoText}>10X FOUNDER</span>
         </div>
         <nav className={styles.navLinks} aria-label="Primary">
@@ -52,9 +52,9 @@ export default function Navbar() {
             </a>
           ))}
         </nav>
-        <Button href="#apply" variant="primary" className={styles.navCta}>
-          Apply Now
-        </Button>
+        <BookCallButton variant="primary" className={styles.navCta}>
+          Book a Strategy Call
+        </BookCallButton>
       </div>
     </header>
   );

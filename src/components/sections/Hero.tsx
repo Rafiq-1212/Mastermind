@@ -1,68 +1,68 @@
+import { Sparkles } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import RevealItem from "@/components/RevealItem";
 import Button from "@/components/ui/Button";
-import CountUp from "@/components/ui/CountUp";
+import BookCallButton from "@/components/BookCallButton";
+import HeroVisual from "./HeroVisual";
 import styles from "./Hero.module.css";
+
+const TRUST_INDICATORS = [
+  { label: "By Application Only", sub: "Limited Availability" },
+  { label: "1:1 Strategy Session", sub: "60-Minute Deep Dive" },
+  { label: "₹3–4 Cr+ Founders", sub: "Revenue Qualified" },
+  { label: "100% Confidential", sub: "No Obligation" },
+];
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
-      <div className={styles.content}>
-        <Reveal>
-          <span className={styles.badge}>BECOME A 10X FOUNDER</span>
-        </Reveal>
+      <div className={styles.grid}>
+        <div className={styles.content}>
+          {/* <Reveal>
+            <span className={styles.badge}>
+              <Sparkles size={13} aria-hidden="true" />
+              GOAT Mastermind Presents
+            </span>
+          </Reveal> */}
 
-        <Reveal delay={0.1}>
-          <h1 className={styles.title}>
-            <span className={styles.line}>Build your million dollar company</span>
-            <span className={`gradientAccent ${styles.highlight}`}>before 30</span>
-          </h1>
-        </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className={styles.title}>
+              Build your million dollar company
+              <span className={`gradientAccent ${styles.highlight}`}>before 30</span>
+            </h1>
+          </Reveal>
 
-        <Reveal delay={0.2}>
-          <p className={styles.subtitle}>
-            A premium, high-ticket 3-day residential program in Athirapalli, Kerala. Specifically designed
-            for founders and business creators under 29 from Tamil Nadu generating &#8377;6L&ndash;&#8377;15L/month
-            to transform from overwhelmed operators into world-class CEOs.
-          </p>
-        </Reveal>
+          <Reveal delay={0.2}>
+            <p className={styles.subtitle}>
+              3 days in Athirapalli. You won&apos;t leave inspired — you&apos;ll leave with a plan.
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.3}>
-          <div className={styles.actions}>
-            <Button href="#apply" variant="primary">
-              Apply for the Residency
-            </Button>
-            <Button href="#transformation" variant="secondary">
-              Explore the Program Philosophy
-            </Button>
-          </div>
-        </Reveal>
+          <Reveal delay={0.3}>
+            <div className={styles.actions}>
+              <BookCallButton variant="primary" showArrow>
+                Register Now
+              </BookCallButton>
+              <Button href="#transformation" variant="secondary">
+                See How It Works
+              </Button>
+            </div>
+          </Reveal>
 
-        <Reveal stagger delay={0.4} className={styles.metrics}>
-          <RevealItem className={styles.metricItem}>
-            <h3 aria-label="3 Days">
-              <CountUp to={3} suffix=" Days" />
-            </h3>
-            <p>Immersive Residency</p>
-          </RevealItem>
-          <div className={styles.divider} />
-          <RevealItem className={styles.metricItem}>
-            <h3>Athirapalli</h3>
-            <p>Kerala, India</p>
-          </RevealItem>
-          <div className={styles.divider} />
-          <RevealItem className={styles.metricItem}>
-            <h3>&#8377;6L &ndash; &#8377;15L</h3>
-            <p>Monthly Current Revenue</p>
-          </RevealItem>
-          <div className={styles.divider} />
-          <RevealItem className={styles.metricItem}>
-            <h3 aria-label="Under 29">
-              <CountUp to={29} prefix="Under " />
-            </h3>
-            <p>Target Age Group</p>
-          </RevealItem>
-        </Reveal>
+          <Reveal stagger delay={0.4} className={styles.trustRow}>
+            {TRUST_INDICATORS.map((item, idx) => (
+              <div className={styles.trustGroup} key={item.label}>
+                <RevealItem className={styles.trustItem}>
+                  <h3>{item.label}</h3>
+                  <p>{item.sub}</p>
+                </RevealItem>
+                {idx < TRUST_INDICATORS.length - 1 && <div className={styles.divider} />}
+              </div>
+            ))}
+          </Reveal>
+        </div>
+
+        <HeroVisual />
       </div>
     </section>
   );

@@ -5,12 +5,11 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.content}>
         <div className={styles.brand}>
-          <h3>10X FOUNDER RESIDENCY</h3>
-          <p>Athirapalli, Kerala. For Tamil Nadu&apos;s Next Generation of CEOs.</p>
+          <h3>10X FOUNDER</h3>
+          <p>Strategy partner for &#8377;3&ndash;4 Cr founders building businesses that run without them.</p>
         </div>
         <div className={styles.meta}>
-          <p>&copy; {new Date().getFullYear()} Million-Dollar Founder Residency. All rights reserved.</p>
-          <p>Curated by Alfred &amp; Senjing.</p>
+          <p>&copy; {new Date().getFullYear()} 10X Founder. All rights reserved.</p>
         </div>
       </div>
     </footer>

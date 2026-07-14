@@ -1,0 +1,147 @@
+.visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: clamp(1rem, 3vw, 2rem);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  aspect-ratio: 580 / 420;
+  isolation: isolate;
+  container-type: inline-size;
+}
+
+.glow {
+  position: absolute;
+  left: -3.5%;
+  top: 50%;
+  width: 72.5%;
+  height: 100%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.24) 0%, transparent 70%);
+  filter: blur(50px);
+}
+
+.ring {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 65.5%;
+  height: 90.5%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+  z-index: 1;
+}
+
+.logoWrap {
+  position: absolute;
+  left: 0;
+  top: 3%;
+  width: 65.5%;
+  height: 90.5%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.logo {
+  width: 89.5%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+}
+
+.widget {
+  position: absolute;
+  left: 20.50%;
+  top: 34%;
+  width: 44.8%;
+  transform: translateY(-50%);
+  padding: clamp(0.75rem, 4.1cqi, 1.5rem);
+  border-radius: clamp(16px, 3.8cqi, 22px);
+  background: rgba(17, 17, 17, 0.72);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+  z-index: 22;
+}
+
+.widgetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(0.6rem, 3cqi, 1.1rem);
+}
+
+.widgetLabel {
+  font-size: clamp(0.62rem, 2.1cqi, 0.75rem);
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.widgetIcon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.widgetBars {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.3rem, 1.4cqi, 0.5rem);
+  height: clamp(40px, 13.5cqi, 78px);
+}
+
+.widgetBars span {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--accent-hover), var(--accent));
+  opacity: 0.85;
+}
+
+.chipTeam,
+.chipBadge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.5rem, 1.65cqi, 0.6rem) clamp(0.75rem, 2.75cqi, 1rem);
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: clamp(0.68rem, 2.2cqi, 0.8rem);
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+  z-index: 4;
+  white-space: nowrap;
+}
+
+.chipIcon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.chipTeam {
+  bottom: 0%;
+  left: 0%;
+}
+
+.chipBadge {
+  top: -10%;
+  left: 6%;
+}

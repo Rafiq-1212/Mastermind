@@ -4,6 +4,26 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  background: var(--bg);
+}
+
+/* Half-moon: a large soft gold glow rising from the top edge, like a moon
+   just cresting the horizon. */
+.halfMoon {
+  position: absolute;
+  top: clamp(-480px, -25vw, -320px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(600px, 45vw + 400px, 1200px);
+  height: clamp(600px, 45vw + 400px, 1200px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.12) 0%,
+    rgba(212, 175, 55, 0.045) 45%,
+    transparent 72%
+  );
+  filter: blur(70px);
 }
 
 .glowLayer {
@@ -15,8 +35,7 @@
   position: absolute;
   border-radius: 50%;
   background: var(--accent);
-  filter: blur(140px);
-  opacity: 0.05;
+  filter: blur(150px);
   mix-blend-mode: screen;
   will-change: transform, opacity;
 }
@@ -24,75 +43,75 @@
 .glowOne {
   width: 560px;
   height: 560px;
-  top: 6%;
-  left: 4%;
-  animation: floatOne 22s ease-in-out infinite alternate;
+  top: 30%;
+  left: 2%;
+  opacity: 0.035;
+  animation: floatOne 28s ease-in-out infinite alternate;
 }
 
 .glowTwo {
   width: 620px;
   height: 620px;
-  top: 42%;
-  right: 2%;
-  animation: floatTwo 25s ease-in-out infinite alternate;
-  animation-delay: -6s;
-}
-
-.glowThree {
-  width: 480px;
-  height: 480px;
-  bottom: 4%;
-  left: 28%;
-  animation: floatThree 18s ease-in-out infinite alternate;
-  animation-delay: -11s;
+  top: 55%;
+  right: 0%;
+  opacity: 0.03;
+  animation: floatTwo 32s ease-in-out infinite alternate;
+  animation-delay: -8s;
 }
 
 @keyframes floatOne {
   from {
     transform: translate(0, 0) scale(1);
-    opacity: 0.04;
   }
   to {
-    transform: translate(40px, 30px) scale(1.12);
-    opacity: 0.07;
+    transform: translate(30px, 24px) scale(1.08);
   }
 }
 
 @keyframes floatTwo {
   from {
     transform: translate(0, 0) scale(1);
-    opacity: 0.03;
   }
   to {
-    transform: translate(-50px, 25px) scale(1.08);
-    opacity: 0.06;
+    transform: translate(-34px, 20px) scale(1.06);
   }
 }
 
-@keyframes floatThree {
-  from {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.03;
-  }
-  to {
-    transform: translate(30px, -35px) scale(1.1);
-    opacity: 0.05;
-  }
+/* Bottom glow: soft gold light pooling near the base of the page. */
+.bottomGlow {
+  position: absolute;
+  bottom: clamp(-320px, -18vw, -220px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(700px, 45vw + 350px, 1300px);
+  height: clamp(420px, 26vw + 200px, 720px);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.03) 45%, transparent 72%);
+  filter: blur(80px);
 }
 
-.mesh {
+/* Faint low-opacity particles — a repeating dot texture, subtle enough to
+   read as ambient dust/light rather than decoration. */
+.particles {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 20% 30%, rgba(var(--accent-rgb), 0.05) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 70%, rgba(var(--accent-rgb), 0.04) 0%, transparent 50%);
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cg fill='%23d4af37'%3E%3Ccircle cx='40' cy='60' r='1.4' opacity='0.5'/%3E%3Ccircle cx='180' cy='30' r='1' opacity='0.35'/%3E%3Ccircle cx='320' cy='90' r='1.6' opacity='0.4'/%3E%3Ccircle cx='120' cy='170' r='1' opacity='0.3'/%3E%3Ccircle cx='260' cy='210' r='1.3' opacity='0.4'/%3E%3Ccircle cx='380' cy='260' r='1' opacity='0.3'/%3E%3Ccircle cx='60' cy='300' r='1.5' opacity='0.4'/%3E%3Ccircle cx='220' cy='340' r='1' opacity='0.3'/%3E%3Ccircle cx='340' cy='380' r='1.3' opacity='0.35'/%3E%3Ccircle cx='20' cy='400' r='1' opacity='0.3'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
 .noise {
   position: absolute;
   inset: 0;
-  opacity: 0.025;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
+}
+
+@media (max-width: 767px) {
+  .particles {
+    opacity: 0.3;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

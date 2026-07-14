@@ -51,7 +51,7 @@ export default function Mentor({
   badgeLabel = "Founder & Mentor",
   portraitSrc,
   portraitAlt = name,
-  primaryCtaLabel = "Join the Mastermind",
+  primaryCtaLabel = "Join The 10X Founder",
   secondaryCtaLabel = "Watch My Story",
   secondaryCtaHref,
 }: MentorProps) {

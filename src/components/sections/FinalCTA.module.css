@@ -19,7 +19,7 @@
   width: 900px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(var(--accent-rgb), 0.06) 0%, transparent 70%);
   filter: blur(70px);
   pointer-events: none;
 }
@@ -72,6 +72,6 @@
 
 @media (max-width: 600px) {
   .cta {
-    width: 80%;
+    width: 100%;
   }
 }

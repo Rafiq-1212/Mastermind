@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { User, Quote, PenLine } from "lucide-react";
+import { User, PenLine } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import RevealItem from "@/components/RevealItem";
 import Button from "@/components/ui/Button";
@@ -59,24 +59,26 @@ export default function Mentor({
     <section id="mentor" className={styles.section}>
       <div className={styles.grid}>
         <Reveal className={styles.portraitCol}>
-          <div className={styles.frame}>
-            <div className={styles.frameGlow} />
-            {portraitSrc ? (
-              <Image
-                src={portraitSrc}
-                alt={portraitAlt}
-                fill
-                sizes="(max-width: 1023px) 280px, 22vw"
-                className={styles.portraitImg}
-              />
-            ) : (
-              <div className={styles.portraitPlaceholder}>
-                <User size={64} aria-hidden="true" />
+          <div className={styles.portraitCard}>
+            <div className={styles.frame}>
+              <div className={styles.frameGlow} />
+              {portraitSrc ? (
+                <Image
+                  src={portraitSrc}
+                  alt={portraitAlt}
+                  fill
+                  sizes="(max-width: 1023px) 280px, 22vw"
+                  className={styles.portraitImg}
+                />
+              ) : (
+                <div className={styles.portraitPlaceholder}>
+                  <User size={64} aria-hidden="true" />
+                </div>
+              )}
+              <div className={styles.signatureBadge}>
+                <PenLine size={14} aria-hidden="true" />
+                <span className={styles.founder}>{badgeLabel}</span>
               </div>
-            )}
-            <div className={styles.signatureBadge}>
-              <PenLine size={14} aria-hidden="true" />
-              <span className={styles.founder}>{badgeLabel}</span>
             </div>
           </div>
         </Reveal>
@@ -94,20 +96,19 @@ export default function Mentor({
             ))}
           </div>
 
-          <Reveal stagger className={styles.statsGrid}>
+          {/* <Reveal stagger className={styles.statsGrid}>
             {stats.map((stat) => (
               <RevealItem className={styles.statCard} key={stat.label}>
                 <span className={styles.statValue}>{stat.value}</span>
                 <span className={styles.statLabel}>{stat.label}</span>
               </RevealItem>
             ))}
-          </Reveal>
+          </Reveal> */}
 
-          <div className={styles.quoteBox}>
-            <Quote size={26} className={styles.quoteIcon} aria-hidden="true" />
+          <blockquote className={styles.quoteBox}>
             <p>&ldquo;{quote}&rdquo;</p>
             <span className={styles.quoteSign}>{quoteSign}</span>
-          </div>
+          </blockquote>
 
           <div className={styles.ctas}>
             <BookCallButton variant="primary" showArrow>

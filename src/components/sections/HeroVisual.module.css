@@ -1,30 +1,39 @@
 .visual {
   position: relative;
   width: 100%;
+  max-width: 220px;
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-block: clamp(1rem, 3vw, 2rem);
 }
 
-.stage {
-  position: relative;
-  width: 100%;
-  max-width: 580px;
-  aspect-ratio: 580 / 420;
-  isolation: isolate;
-  container-type: inline-size;
+@media (min-width: 768px) {
+  .visual {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visual {
+    max-width: 380px;
+    /* Text hugs the grid's left edge (text-align: left); mirror that here
+       so the brand mark hugs the right edge instead of floating centered
+       in the middle of its (wider) column, which reads as off-center. */
+    margin-inline: auto 0;
+  }
 }
 
 .glow {
   position: absolute;
-  left: -3.5%;
+  left: 50%;
   top: 50%;
-  width: 72.5%;
+  width: 100%;
   height: 100%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.24) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.16) 0%, transparent 70%);
   filter: blur(50px);
 }
 
@@ -54,10 +63,10 @@
 }
 
 .logo {
-  width: 89.5%;
+  width: 95.5%;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 20px 44px rgba(var(--accent-rgb), 0.25)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
 }
 
 .widget {
@@ -146,34 +155,3 @@
   left: 6%;
 }
 
-/* The goat ring/logo/widget cluster only occupies the left ~65-70% of the
-   .stage box (by design, so it can sit beside the widget/chips in the
-   desktop two-column layout). On mobile the stage is the only thing on
-   screen, so that unused right-hand margin reads as the whole visual
-   being shifted left. Shift every left-anchored child right by the same
-   amount to recenter the cluster as a whole, without touching desktop. */
-@media (max-width: 767px) {
-  .glow {
-    left: calc(-3.5% + 17.25%);
-  }
-
-  .ring {
-    left: 17.25%;
-  }
-
-  .logoWrap {
-    left: 17.25%;
-  }
-
-  .widget {
-    left: calc(20.5% + 17.25%);
-  }
-
-  .chipTeam {
-    left: 17.25%;
-  }
-
-  .chipBadge {
-    left: calc(6% + 17.25%);
-  }
-}

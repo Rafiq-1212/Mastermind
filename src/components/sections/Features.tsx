@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import { slideInLeft, slideInRight, slideInMobile } from "@/lib/motion-variants";
 import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
 import { useIsMobile } from "@/lib/useIsMobile";
+import { NodesIllustration, ChartIllustration, TeamIllustration, RoadmapIllustration } from "./FeatureIllustrations";
 import styles from "./Features.module.css";
 
 const FEATURES = [
@@ -16,6 +17,7 @@ const FEATURES = [
       "Every decision, sale, and fire currently runs through you.",
       "We install the operational systems so the business runs without you in the room.",
     ],
+    Illustration: NodesIllustration,
   },
   {
     icon: LineChart,
@@ -24,6 +26,7 @@ const FEATURES = [
       "Growth that doesn't depend on your personal bandwidth.",
       "A repeatable system for consistent, compounding revenue.",
     ],
+    Illustration: ChartIllustration,
   },
   {
     icon: Users,
@@ -32,6 +35,7 @@ const FEATURES = [
       "A team that makes decisions without waiting on you.",
       "Leaders who own results — not just tasks on a list.",
     ],
+    Illustration: TeamIllustration,
   },
   {
     icon: Compass,
@@ -40,6 +44,7 @@ const FEATURES = [
       "No vague frameworks or generic advice.",
       "A precise plan to remove yourself from delivery, decisions, and firefighting.",
     ],
+    Illustration: RoadmapIllustration,
   },
 ];
 
@@ -77,9 +82,8 @@ export default function Features() {
                 </div>
 
                 <div className={styles.visual}>
-                  <div className={styles.visualGlow} />
                   <div className={styles.visualPanel}>
-                    <item.icon size={40} aria-hidden="true" />
+                    <item.Illustration />
                   </div>
                 </div>
               </div>
@@ -107,9 +111,8 @@ export default function Features() {
               </div>
 
               <div className={styles.visual}>
-                <div className={styles.visualGlow} />
                 <div className={styles.visualPanel}>
-                  <item.icon size={40} aria-hidden="true" />
+                  <item.Illustration />
                 </div>
               </div>
             </motion.div>

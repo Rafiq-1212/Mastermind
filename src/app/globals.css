@@ -1,33 +1,52 @@
 @import "tailwindcss";
 
 :root {
+  /* Accent scale, derived from the base accent #A4935D */
+  --accent-50: #faf6ee;
+  --accent-100: #f1e8d2;
+  --accent-200: #e3d2a5;
+  --accent-300: #d4bb7c;
+  --accent-400: #bfa76b;
+  --accent-500: #a4935d;
+  --accent-600: #8a7a4c;
+  --accent-700: #6e613c;
+  --accent-800: #4f452c;
+  --accent-900: #2e281a;
+
   /* Surfaces */
-  --bg: #090909;
-  --bg-2: #111111;
-  --card: rgba(255, 255, 255, 0.035);
+  --bg-void: #08080a;
+  --bg-surface: #111113;
+  --bg-elevated: #17171a;
+  --bg: var(--bg-void);
+  --bg-2: var(--bg-surface);
+  --card: var(--bg-surface);
 
   /* Text */
-  --text: #ffffff;
-  --text-muted: #b5b5b5;
+  --text-primary: #f5f3ee;
+  --text-secondary: #a8a6a0;
+  --text-faint: #6e6c68;
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
 
-  /* Accent */
-  --accent: #a4935d;
-  --accent-hover: #a4935d;
-  --accent-rgb: 212, 175, 55;
+  /* Accent (back-compat aliases used throughout existing components) */
+  --accent: var(--accent-500);
+  --accent-hover: var(--accent-400);
+  --accent-rgb: 164, 147, 93;
 
   /* Borders */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: #d4af37;
+  --border-subtle: rgba(164, 147, 93, 0.14);
+  --border-strong: rgba(164, 147, 93, 0.35);
+  --border: var(--border-subtle);
+  --border-hover: var(--border-strong);
 
   /* Status (used sparingly, e.g. before/after contrast) */
   --danger: #ef4444;
 
   /* Fonts */
-  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    var(--font-manrope), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "SF Pro Display", var(--font-inter), "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  --font-heading: var(--font-manrope), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* Shadows */
   --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.45);

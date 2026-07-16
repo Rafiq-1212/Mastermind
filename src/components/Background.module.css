@@ -4,90 +4,12 @@
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: var(--bg);
-}
-
-/* Half-moon: a large soft gold glow rising from the top edge, like a moon
-   just cresting the horizon. */
-.halfMoon {
-  position: absolute;
-  top: clamp(-480px, -25vw, -320px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(600px, 45vw + 400px, 1200px);
-  height: clamp(600px, 45vw + 400px, 1200px);
-  border-radius: 50%;
   background: radial-gradient(
-    circle,
-    rgba(212, 175, 55, 0.095) 0%,
-    rgba(212, 175, 55, 0.035) 45%,
-    transparent 72%
-  );
-  filter: blur(70px);
-}
-
-.glowLayer {
-  position: absolute;
-  inset: -20%;
-}
-
-.glow {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--accent);
-  filter: blur(150px);
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-}
-
-.glowOne {
-  width: 560px;
-  height: 560px;
-  top: 30%;
-  left: 2%;
-  opacity: 0.028;
-  animation: floatOne 28s ease-in-out infinite alternate;
-}
-
-.glowTwo {
-  width: 620px;
-  height: 620px;
-  top: 55%;
-  right: 0%;
-  opacity: 0.024;
-  animation: floatTwo 32s ease-in-out infinite alternate;
-  animation-delay: -8s;
-}
-
-@keyframes floatOne {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(30px, 24px) scale(1.08);
-  }
-}
-
-@keyframes floatTwo {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-  to {
-    transform: translate(-34px, 20px) scale(1.06);
-  }
-}
-
-/* Bottom glow: soft gold light pooling near the base of the page. */
-.bottomGlow {
-  position: absolute;
-  bottom: clamp(-320px, -18vw, -220px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(700px, 45vw + 350px, 1300px);
-  height: clamp(420px, 26vw + 200px, 720px);
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.065) 0%, rgba(212, 175, 55, 0.024) 45%, transparent 72%);
-  filter: blur(80px);
+      120% 90% at 50% -10%,
+      rgba(var(--accent-rgb), 0.05) 0%,
+      transparent 55%
+    ),
+    var(--bg-void);
 }
 
 /* Faint low-opacity particles — a repeating dot texture, subtle enough to
@@ -111,39 +33,5 @@
 @media (max-width: 767px) {
   .particles {
     opacity: 0.3;
-  }
-
-  /* Lighter travel distance and slower cadence on mobile — calmer motion,
-     less GPU/battery cost on handhelds. */
-  .glowOne {
-    animation-duration: 34s;
-  }
-
-  .glowTwo {
-    animation-duration: 38s;
-  }
-
-  @keyframes floatOne {
-    from {
-      transform: translate(0, 0) scale(1);
-    }
-    to {
-      transform: translate(14px, 12px) scale(1.04);
-    }
-  }
-
-  @keyframes floatTwo {
-    from {
-      transform: translate(0, 0) scale(1);
-    }
-    to {
-      transform: translate(-16px, 10px) scale(1.03);
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .glow {
-    animation: none !important;
   }
 }

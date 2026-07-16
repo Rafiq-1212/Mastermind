@@ -7,10 +7,9 @@ import HeroVisual from "./HeroVisual";
 import styles from "./Hero.module.css";
 
 const TRUST_INDICATORS = [
-  { label: "By Application Only", sub: "Limited Availability" },
-  { label: "1:1 Strategy Session", sub: "60-Minute Deep Dive" },
-  { label: "₹3–4 Cr+ Founders", sub: "Revenue Qualified" },
-  { label: "100% Confidential", sub: "No Obligation" },
+  { label: "Geography", sub: "Founders and Creators" },
+  { label: "Age ", sub: "Under 29 years old." },
+  { label: "Composition", sub: "80% Founders , 20% Creators " }
 ];
 
 export default function Hero() {
@@ -27,20 +26,19 @@ export default function Hero() {
 
           <Reveal delay={0.1}>
             <h1 className={styles.title}>
-              Build your million dollar company
-              <span className={`gradientAccent ${styles.highlight}`}>before 30</span>
+              Build your million dollar<br className={styles.lineBreak} /> company <span className={styles.hightlight}>before 30</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.2}>
             <p className={styles.subtitle}>
-              3 days in Athirapalli. You won&apos;t leave inspired — you&apos;ll leave with a plan.
+              3 days in Athirapalli. You won&apos;t leave inspired — you&apos;ll leave with a plan systems, and momentum.
             </p>
           </Reveal>
 
           <Reveal delay={0.3}>
             <div className={styles.actions}>
-              <BookCallButton variant="primary" showArrow>
+              <BookCallButton  showArrow>
                 Register Now
               </BookCallButton>
               <Button href="#transformation" variant="secondary">
@@ -60,9 +58,15 @@ export default function Hero() {
               </div>
             ))}
           </Reveal>
+
+          
         </div>
 
         <HeroVisual />
+
+        <Reveal delay={0.3} className={styles.para}>
+          <p>Build the Clarity - Lead the Company - Become the Founder.</p>
+        </Reveal>
       </div>
     </section>
   );

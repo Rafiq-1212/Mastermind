@@ -4,75 +4,37 @@
   justify-content: center;
   gap: 0.5rem;
   min-height: 44px;
-  padding: 0.55rem clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  padding: 14px 28px;
   border-radius: 999px;
   font-weight: 600;
   font-size: 1rem;
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease,
-    box-shadow 200ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
 .primary {
-  background: linear-gradient(135deg, #e8c973, var(--accent) 55%, #b8892e);
-  color: #16130a;
-  box-shadow: var(--shadow-accent);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-/* Shimmer sweep: a diagonal highlight band that slides across the button on
-   hover. transform-only so it stays GPU-accelerated (no layout/paint cost). */
-.primary::before {
-  content: "";
-  position: absolute;
-  inset: -20% -60%;
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.55) 50%,
-    transparent 60%
-  );
-  transform: translateX(-60%);
-  pointer-events: none;
-  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--accent-500);
+  color: var(--bg-void);
 }
 
 .primary:hover {
-  box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.4);
-}
-
-.primary:hover::before {
-  transform: translateX(60%);
+  background: var(--accent-400);
 }
 
 .secondary {
   background: transparent;
-  color: var(--text);
-  border-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease,
-    box-shadow 200ms ease, backdrop-filter 200ms ease;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
 }
 
 .secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--border-hover);
-  color: var(--accent);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  border-color: var(--accent-400);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .arrow {
   display: inline-flex;
   align-items: center;
-  transition: transform 200ms ease;
-}
-
-.btn:hover .arrow {
-  transform: translateX(4px);
 }

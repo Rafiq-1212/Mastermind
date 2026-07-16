@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import Transformation from "@/components/sections/Transformation";
 import Mentor from "@/components/sections/Mentor";
 import Features from "@/components/sections/Features";
+import Outcomes from "@/components/sections/Outcomes";
 import SocialProof from "@/components/sections/SocialProof";
 import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -18,6 +19,7 @@ export default function Home() {
         <Transformation />
         <Mentor portraitSrc="/men-nobg.png" />
         <Features />
+        <Outcomes />
         <SocialProof />
         {/* <FAQ /> */}
         <FinalCTA />

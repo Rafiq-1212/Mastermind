@@ -28,6 +28,14 @@
   justify-content: center;
 }
 
+.portraitCard {
+  padding: 20px;
+  background: var(--mentor-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
 .frame {
   position: relative;
   width: clamp(220px, 180px + 14vw, 420px);
@@ -105,7 +113,7 @@
 }
 .signatureBadge {
   position: absolute;
-  bottom: -3rem;
+  bottom: -5rem;
   left: 50%;
   transform: translateX(-50%);
 
@@ -118,9 +126,9 @@
 
   padding: 0.55rem 1.1rem;
   border-radius: 999px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  font-size: 0.72rem;
+  /* background: var(--bg-2); */
+  /* border: 1px solid var(--border); */
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--mentor-gold);
@@ -135,15 +143,15 @@
 .contentCol {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
 }
 
 .sectionTag {
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--mentor-gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--accent-400);
   text-transform: uppercase;
   display: inline-block;
   margin-bottom: 1rem;
@@ -238,18 +246,12 @@
   position: relative;
   width: 100%;
   max-width: 560px;
-  padding: 1.75rem 2rem;
-  border-radius: 20px;
+  padding: 1.25rem 1.75rem;
+  border-radius: 0 16px 16px 0;
   background: var(--mentor-card);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(10px);
+  border-left: 4px solid var(--accent-500);
   margin-bottom: 2rem;
-}
-
-.quoteIcon {
-  color: var(--mentor-gold);
-  opacity: 0.7;
-  margin-bottom: 0.75rem;
+  text-align: left;
 }
 
 .quoteBox p {
@@ -284,11 +286,6 @@
   .grid {
     grid-template-columns: 1fr;
     gap: 3.5rem;
-  }
-
-  .contentCol {
-    align-items: center;
-    text-align: center;
   }
 
   .contentCol h2 {

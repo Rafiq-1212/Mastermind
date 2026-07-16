@@ -1,9 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { MouseEventHandler, ReactNode } from "react";
-import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
 import styles from "./Button.module.css";
 
 interface ButtonProps {
@@ -25,10 +21,6 @@ export default function Button({
   onClick,
   showArrow = false,
 }: ButtonProps) {
-  const reduceMotion = useSafeReducedMotion();
-  const whileHover = reduceMotion ? undefined : { y: -2, scale: 1.04 };
-  const whileTap = reduceMotion ? undefined : { scale: 0.97 };
-  const springTransition = { type: "spring" as const, stiffness: 420, damping: 20 };
   const cls = `${styles.btn} ${styles[variant]} ${className}`;
 
   const content = (
@@ -44,29 +36,15 @@ export default function Button({
 
   if (href) {
     return (
-      <motion.a
-        href={href}
-        className={cls}
-        whileHover={whileHover}
-        whileTap={whileTap}
-        transition={springTransition}
-        onClick={onClick}
-      >
+      <a href={href} className={cls} onClick={onClick}>
         {content}
-      </motion.a>
+      </a>
     );
   }
 
   return (
-    <motion.button
-      type={type}
-      className={cls}
-      whileHover={whileHover}
-      whileTap={whileTap}
-      transition={springTransition}
-      onClick={onClick}
-    >
+    <button type={type} className={cls} onClick={onClick}>
       {content}
-    </motion.button>
+    </button>
   );
 }

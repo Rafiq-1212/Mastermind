@@ -23,11 +23,7 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     const missingField = REQUIRED_FIELDS.some((field) => !body[field]);
-    const missingChoices =
-      !Array.isArray(body.servicesLooking) ||
-      body.servicesLooking.length === 0 ||
-      !Array.isArray(body.foundUs) ||
-      body.foundUs.length === 0;
+    const missingChoices = !Array.isArray(body.foundUs) || body.foundUs.length === 0;
 
     if (missingField || missingChoices) {
       return NextResponse.json(

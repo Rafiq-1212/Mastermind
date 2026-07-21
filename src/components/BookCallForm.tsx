@@ -29,12 +29,6 @@ const YES_NO_OPTIONS = [
   { value: "No", label: "No" },
 ];
 
-const SERVICE_OPTIONS = [
-  { value: "Personal Branding", label: "Personal Branding" },
-  { value: "Branding", label: "Branding" },
-  { value: "Consultation", label: "Consultation" },
-];
-
 const FOUND_US_OPTIONS = [
   { value: "GOAT Media Insta page", label: "GOAT Media Insta page" },
   { value: "Kennet Alphy's Instagram", label: "Kennet Alphy's Instagram" },
@@ -54,7 +48,6 @@ const INITIAL_FORM = {
   incomeLevel: "",
   incomeTarget: "",
   meetingTargets: "",
-  servicesLooking: [] as string[],
   websiteDetails: "",
   socialLinks: "",
   investmentReady: "",
@@ -93,7 +86,7 @@ export default function BookCallForm() {
     if (formError) setFormError("");
   };
 
-  const handleCheckboxChange = (name: "servicesLooking" | "foundUs") => (values: string[]) => {
+  const handleCheckboxChange = (name: "foundUs") => (values: string[]) => {
     setFormData((prev) => ({ ...prev, [name]: values }));
     if (formError) setFormError("");
   };
@@ -102,7 +95,7 @@ export default function BookCallForm() {
     e.preventDefault();
 
     const missingText = REQUIRED_TEXT_FIELDS.some((field) => !formData[field]);
-    const missingChoices = formData.servicesLooking.length === 0 || formData.foundUs.length === 0;
+    const missingChoices = formData.foundUs.length === 0;
 
     if (missingText || missingChoices) {
       setFormError("Please fill in all required fields to submit your application.");
@@ -271,15 +264,6 @@ export default function BookCallForm() {
             options={YES_NO_OPTIONS}
             required
             error={!!formError && !formData.meetingTargets}
-          />
-
-          <CheckboxGroup
-            label="Are you below 27? *"
-            name="servicesLooking"
-            values={formData.servicesLooking}
-            onChange={handleCheckboxChange("servicesLooking")}
-            options={SERVICE_OPTIONS}
-            error={!!formError && formData.servicesLooking.length === 0}
           />
 
           <FloatingField

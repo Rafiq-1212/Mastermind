@@ -40,7 +40,6 @@ model ClientIntake {
   incomeLevel      String
   incomeTarget     String
   meetingTargets   String
-  servicesLooking  String[]
   websiteDetails   String
   socialLinks      String
   investmentReady  String

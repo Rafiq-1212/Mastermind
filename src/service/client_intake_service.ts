@@ -10,7 +10,6 @@ export async function saveClientIntake(data: {
   incomeLevel: string;
   incomeTarget: string;
   meetingTargets: string;
-  servicesLooking: string[];
   websiteDetails: string;
   socialLinks: string;
   investmentReady: string;
@@ -27,7 +26,6 @@ export async function saveClientIntake(data: {
       incomeLevel: data.incomeLevel,
       incomeTarget: data.incomeTarget,
       meetingTargets: data.meetingTargets,
-      servicesLooking: data.servicesLooking,
       websiteDetails: data.websiteDetails,
       socialLinks: data.socialLinks,
       investmentReady: data.investmentReady,

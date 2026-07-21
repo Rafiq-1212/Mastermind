@@ -23,12 +23,6 @@ export const CLIENT_INTAKE_EXPORT_COLUMNS: ClientIntakeExportColumn[] = [
   { header: "Current Income Level", key: "incomeLevel", width: 26, value: (r) => r.incomeLevel },
   { header: "Annual Income Target", key: "incomeTarget", width: 22, value: (r) => r.incomeTarget },
   { header: "Meeting Monthly Targets", key: "meetingTargets", width: 20, value: (r) => r.meetingTargets },
-  {
-    header: "Services Looking For",
-    key: "servicesLooking",
-    width: 30,
-    value: (r) => r.servicesLooking.join(", "),
-  },
   { header: "Website Details", key: "websiteDetails", width: 30, value: (r) => r.websiteDetails },
   { header: "Social Media Links", key: "socialLinks", width: 30, value: (r) => r.socialLinks },
   { header: "Investment Ready (1L-1.5L/mo)", key: "investmentReady", width: 24, value: (r) => r.investmentReady },

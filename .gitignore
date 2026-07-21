@@ -44,3 +44,6 @@ next-env.d.ts
 
 # generated Excel exports (contain PII, regenerated on demand from the DB)
 /exports
+
+.vercel
+.env*

@@ -5,7 +5,7 @@ export default function MobileStickyBar() {
   return (
     <div className={styles.bar}>
       <BookCallButton variant="primary" className={styles.cta}>
-        Book a  Call
+        Join The Wait List
       </BookCallButton>
     </div>
   );

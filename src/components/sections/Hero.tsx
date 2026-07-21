@@ -73,7 +73,7 @@ export default function Hero() {
           <Reveal delay={0.3}>
             <div className={styles.actions}>
               <BookCallButton  showArrow>
-                Join the wait List 
+                Join The Wait List 
               </BookCallButton>
               <Button href="#transformation" variant="secondary">
                 See How It Works

@@ -50,7 +50,7 @@ export default function Mentor({
   badgeLabel = "Founder & Mentor",
   portraitSrc,
   portraitAlt = name,
-  primaryCtaLabel = "Join the Wait List",
+  primaryCtaLabel = "Join The Wait List",
   secondaryCtaLabel = "Watch My Story",
   secondaryCtaHref,
 }: MentorProps) {

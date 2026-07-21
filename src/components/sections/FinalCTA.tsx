@@ -14,7 +14,7 @@ export default function FinalCTA() {
         <p>Book your strategy call — 60 minutes, no pitch, just clarity on your next move.</p>
 
         <BookCallButton variant="primary" className={styles.cta} showArrow>
-          Join the wait list
+          Join The Wait List
         </BookCallButton>
 
         {/* <div className={styles.badges}>

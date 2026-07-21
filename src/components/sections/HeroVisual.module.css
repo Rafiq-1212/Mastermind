@@ -1,7 +1,8 @@
 .visual {
   position: relative;
   width: 100%;
-  max-width: 270px;
+  max-width: 320px;
+  aspect-ratio: 4 / 3;
   margin-inline: auto;
   display: flex;
   align-items: center;
@@ -11,17 +12,16 @@
 
 @media (min-width: 768px) {
   .visual {
-    max-width: 380px;
+    max-width: 480px;
   }
 }
 
 @media (min-width: 1024px) {
   .visual {
-    max-width: 460px;
-    /* Text hugs the grid's left edge (text-align: left); mirror that here
-       so the brand mark hugs the right edge instead of floating centered
-       in the middle of its (wider) column, which reads as off-center. */
-    margin-inline: auto 0;
+    max-width: 620px;
+    /* Kept centered in its column on desktop too (was margin-inline: auto 0,
+       hugging the right edge — changed on request so it centers like mobile). */
+    margin-inline: auto;
   }
 }
 
@@ -37,6 +37,8 @@
   filter: blur(50px);
 }
 
+/* Paused — not currently used in HeroVisual.tsx (swapped for .videoBare
+   below), kept here so the card frame can be restored tomorrow. */
 .videoFrame {
   position: relative;
   width: 100%;
@@ -79,4 +81,16 @@
 
 .playButton:hover {
   background: var(--accent-400);
+}
+
+@media (min-width: 768px) {
+  .playButton {
+    width: 80px;
+    height: 80px;
+  }
+
+  .playButton svg {
+    width: 32px;
+    height: 32px;
+  }
 }

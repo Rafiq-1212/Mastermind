@@ -20,7 +20,7 @@ export default function Home() {
         <Mentor portraitSrc="/alfred.jpg" />
         <Outcomes />
         <Features />
-        <SocialProof />
+        {/* <SocialProof /> */}
         <UrgencySection/>
         {/* <FAQ /> */}
         <FinalCTA />

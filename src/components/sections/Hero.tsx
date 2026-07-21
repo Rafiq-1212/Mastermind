@@ -20,7 +20,7 @@ export default function Hero() {
 
           <Reveal delay={0.1}>
             <h1 className={styles.title}>
-              Build Your Million Dollar<br className={styles.lineBreak} /> Company <span className={styles.hightlight}>Before 30</span>
+              <span className={styles.titleLine}>Build Your Million Dollar Company</span><br className={styles.lineBreak} /> <span className={styles.hightlight}>Before 30</span>
             </h1>
           </Reveal>
 
@@ -84,7 +84,7 @@ export default function Hero() {
           
         </div>
 
-        <HeroVisual />
+        {/* <HeroVisual /> */}
       </div>
 
       <Reveal delay={0.2} className={styles.taglineSection}>

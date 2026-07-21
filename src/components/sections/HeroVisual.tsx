@@ -18,6 +18,8 @@ export default function HeroVisual() {
     <div className={styles.visual}>
       <motion.div className={styles.glow} animate={pulse} aria-hidden="true" />
 
+      {/* Video card frame — temporarily disabled (removed the bordered/
+          shadowed card look per request), kept here to restore tomorrow.
       <div className={styles.videoFrame}>
         {isPlaying ? (
           <video
@@ -38,6 +40,26 @@ export default function HeroVisual() {
           </button>
         )}
       </div>
+      */}
+
+      {isPlaying ? (
+        <video
+          src="/video.mp4"
+          className={styles.video}
+          controls
+          autoPlay
+          playsInline
+        />
+      ) : (
+        <button
+          type="button"
+          className={styles.playButton}
+          onClick={() => setIsPlaying(true)}
+          aria-label="Play video"
+        >
+          <Play size={26} fill="currentColor" aria-hidden="true" />
+        </button>
+      )}
     </div>
   );
 }

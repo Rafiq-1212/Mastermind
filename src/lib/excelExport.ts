@@ -112,6 +112,11 @@ async function appendRecordToExportFileInner(record: Application): Promise<void>
     return;
   }
 
+  // ExcelJS doesn't persist column `key`s in the .xlsx file itself, so a
+  // freshly-loaded worksheet has no key -> column mapping. Without this,
+  // addRow()'s keyed object below silently produces an empty row.
+  sheet.columns = ALL_COLUMNS.map((col) => ({ header: col.header, key: col.key, width: col.width }));
+
   const headerRowValues = sheet.getRow(1).values as unknown as string[];
   const idColNumber = Array.isArray(headerRowValues) ? headerRowValues.indexOf(ID_COLUMN.header) : -1;
 

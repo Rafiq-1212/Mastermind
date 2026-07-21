@@ -14,10 +14,14 @@
 }
 
 .sectionTag {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.15em;
-  color: var(--accent-400);
+  background: linear-gradient(135deg, #8a6c38 0%, #ba9a63 25%, #e6cb95 45%, #c2a36b 55%, #a6844d 75%, #664d24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
   text-transform: uppercase;
   display: inline-block;
   margin-bottom: 1rem;
@@ -38,11 +42,7 @@
 .rows {
   display: flex;
   flex-direction: column;
-  gap: clamp(3.5rem, 2.5rem + 5vw, 6rem);
-  /* Guards against the alternating left/right reveal's horizontal offset
-     ever being visible pre-hydration (useIsMobile briefly reports false
-     during the SSR-safe first paint, before settling to its real value). */
-  overflow-x: hidden;
+  gap: clamp(3.75rem, 3.3rem + 2vw, 5rem);
 }
 
 .row {
@@ -68,7 +68,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  text-align: justify;
 }
 
 .iconWrap {

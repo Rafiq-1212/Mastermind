@@ -14,16 +14,16 @@ export default function FinalCTA() {
         <p>Book your strategy call — 60 minutes, no pitch, just clarity on your next move.</p>
 
         <BookCallButton variant="primary" className={styles.cta} showArrow>
-          Register Now
+          Join the wait list
         </BookCallButton>
 
-        <div className={styles.badges}>
+        {/* <div className={styles.badges}>
           {TRUST_BADGES.map((badge) => (
             <span key={badge} className={styles.badge}>
               {badge}
             </span>
           ))}
-        </div>
+        </div> */}
       </Reveal>
     </section>
   );

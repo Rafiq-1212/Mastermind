@@ -28,9 +28,8 @@ interface MentorProps {
 }
 
 const DEFAULT_BIO = [
-  "[A short introduction — who they are and what they've built goes here.]",
-  "[X]+ years helping founders install the systems, leadership, and operating rhythm that let a business run without them in the room.",
-  "[Why founders trust them — track record, philosophy, or approach goes here.]",
+  "Alfred built The GOAT Media on a simple bet: most founders don't fail from lack of effort, they fail from lack of a plan they actually execute. He's known for taking businesses that feel complicated and breaking them down into the three or four moves that actually matter.",
+  "Founder 10X runs on the same principle — three days, no borrowed frameworks, a plan built specifically for the business you're already running."
 ];
 
 const DEFAULT_STATS: Stat[] = [
@@ -42,16 +41,16 @@ const DEFAULT_STATS: Stat[] = [
 
 export default function Mentor({
   eyebrow = "Meet Your Mentor",
-  name = "[Mentor Name Goes Here]",
-  subhead = "Helping Founders Build Businesses That Run Without Them.",
+  name = "Alfred Joshua",
+  subhead = "CEO,The GOAT Media.",
   bio = DEFAULT_BIO,
   stats = DEFAULT_STATS,
-  quote = "[A one or two line personal quote about their philosophy on building founder-independent businesses goes here.]",
+  quote = "Founder 10X runs on the same principle — three days, no borrowed frameworks, a plan built specifically for the business you're already running.",
   quoteSign = "— [Mentor Name]",
   badgeLabel = "Founder & Mentor",
   portraitSrc,
   portraitAlt = name,
-  primaryCtaLabel = "Join The 10X Founder",
+  primaryCtaLabel = "Join the Wait List",
   secondaryCtaLabel = "Watch My Story",
   secondaryCtaHref,
 }: MentorProps) {
@@ -77,16 +76,15 @@ export default function Mentor({
               )}
               <div className={styles.signatureBadge}>
                 <PenLine size={14} aria-hidden="true" />
-                <span className={styles.founder}>{badgeLabel}</span>
+                {/* <span className={styles.founder}>{badgeLabel}</span> */}
               </div>
             </div>
           </div>
         </Reveal>
 
         <Reveal delay={0.1} className={styles.contentCol}>
-          <span className={styles.sectionTag}>{eyebrow}</span>
+         <h2 className={styles.greeting}>Hosted By <span className={styles.name}>{name}</span></h2>
           <h2>
-            Hi, I&apos;m {name}
             {subhead && <span className={styles.subhead}>{subhead}</span>}
           </h2>
 
@@ -95,20 +93,6 @@ export default function Mentor({
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-
-          {/* <Reveal stagger className={styles.statsGrid}>
-            {stats.map((stat) => (
-              <RevealItem className={styles.statCard} key={stat.label}>
-                <span className={styles.statValue}>{stat.value}</span>
-                <span className={styles.statLabel}>{stat.label}</span>
-              </RevealItem>
-            ))}
-          </Reveal> */}
-
-          <blockquote className={styles.quoteBox}>
-            <p>&ldquo;{quote}&rdquo;</p>
-            <span className={styles.quoteSign}>{quoteSign}</span>
-          </blockquote>
 
           <div className={styles.ctas}>
             <BookCallButton variant="primary" showArrow>

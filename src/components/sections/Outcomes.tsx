@@ -10,72 +10,78 @@ import {
   Crown,
 } from "lucide-react";
 import styles from "./Outcomes.module.css";
+import { number } from "framer-motion";
 
 const OUTCOMES = [
   {
     number: "01",
     icon: Target,
-    title: "Clear Business Clarity",
-    desc: "Understand exactly where your business stands today and identify your biggest opportunities.",
+    title: "The Business Diagnostic",
+    desc: "Map exactly where your business stands today revenue, margin, and the bottlenecks only you can see.",
   },
   {
     number: "02",
     icon: Compass,
-    title: "3–5 Year Founder Vision",
-    desc: "Leave with a long-term vision that aligns your business, leadership, and personal goals.",
+    title: "The 3-5 Year Vision Lock ",
+    desc: "Define the specific company you're building towards writen down, not an aspiration.",
   },
   {
     number: "03",
     icon: Calendar,
-    title: "12-Month Growth Roadmap",
-    desc: "A practical yearly strategy with milestones that keep your company moving forward.",
+    title: "Decision Frameworks For Pricing and Hiring",
+    desc: "The Specific model that stop decisions from taking days.",
   },
   {
     number: "04",
     icon: Rocket,
-    title: "90-Day Execution Plan",
-    desc: "Walk away with clear priorities and immediate next steps for execution.",
+    title: "Predictable Growth Systems",
+    desc: "Build a sales and marketing engine that doesn't depend on your personal hustle.",
   },
   {
     number: "05",
     icon: Workflow,
-    title: "Scalable Systems",
-    desc: "Proven frameworks and operating systems to simplify growth and decision-making.",
+    title: "AI Framework For Founders",
+    desc: "The specific AI tools and workflows that compress work founders usually take years to learn.",
   },
   {
     number: "06",
     icon: Wrench,
-    title: "Ready-to-Use Tools",
-    desc: "Templates, resources, and practical tools that can be implemented immediately.",
+    title: "The 12-month strategic roadmap",
+    desc: "Milestone by milestone, reviewed by Alfred and the room before you leave.",
   },
   {
     number: "07",
     icon: Brain,
-    title: "Founder Habits",
-    desc: "Daily operating principles that improve focus, leadership, and consistency.",
+    title: "The 90-day execution plan",
+    desc: "Convert the roadmap into the specific, dated actions for your first quarter.",
   },
   {
     number: "08",
     icon: CheckCircle,
-    title: "Execution in Progress",
-    desc: "Complete meaningful work during the residency instead of only taking notes.",
+    title: "Team and leadership systems",
+    desc: "What to hire for, when, and how to lead people who aren't you.",
   },
   {
     number: "09",
     icon: Crown,
-    title: "CEO Confidence",
-    desc: "Develop the mindset and confidence required to lead a high-performing company.",
+    title: "Founder habits and operating rhythm",
+    desc: "The daily principles that compound — built around your business, not generic advice.",
   },
+  {
+    number:"10",
+    icon:Crown,
+    title:"The commitment round",
+    desc:"Say your 90-day plan out loud to the room. 25 founders now know what you said you'd do."
+  }
 ];
 
 export default function Outcomes() {
   return (
     <section id="outcomes" className={styles.section}>
       <div className={styles.header}>
-        <h2>What You&apos;ll Leave With</h2>
+        <h2>10 Things Every Founder Builds In The Room.</h2>
         <p>
-          Every founder leaves the residency with a complete operating system for building,
-          scaling, and leading a world-class company.
+          Not talks to sit through, frameworks you apply to your own business before you leave.
         </p>
       </div>
 

@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { MapPin, Clock, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import RevealItem from "@/components/RevealItem";
 import Button from "@/components/ui/Button";
@@ -8,7 +8,7 @@ import styles from "./Hero.module.css";
 
 const TRUST_INDICATORS = [
   { label: "Geography", sub: "Founders and Creators" },
-  { label: "Age ", sub: "Under 29 years old." },
+  { label: "Age ", sub: "Under 27 years old." },
   { label: "Composition", sub: "80% Founders , 20% Creators " }
 ];
 
@@ -17,26 +17,37 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.grid}>
         <div className={styles.content}>
-          {/* <Reveal>
-            <span className={styles.badge}>
-              <Sparkles size={13} aria-hidden="true" />
-              GOAT Mastermind Presents
-            </span>
-          </Reveal> */}
 
           <Reveal delay={0.1}>
             <h1 className={styles.title}>
-              Build your million dollar<br className={styles.lineBreak} /> company <span className={styles.hightlight}>before 30</span>
+              Build Your Million Dollar<br className={styles.lineBreak} /> Company <span className={styles.hightlight}>Before 30</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.2}>
             <p className={styles.subtitle}>
-              3 days in Athirapalli. You won&apos;t leave inspired — you&apos;ll leave with a plan systems, and momentum.
+              Most founders in their 20s are working harder than anyone in the room and still can’t tell if they’re building the right thing. Founder 10x is where that gets answered.
             </p>
           </Reveal>
 
-          <Reveal delay={0.3}>
+          <Reveal delay={0.25}>
+            <div className={styles.metaRow}>
+              <span className={styles.metaItem}>
+                <MapPin size={14} className={styles.metaIcon} aria-hidden="true" />
+                Athirapalli, Kerala
+              </span>
+              <span className={styles.metaItem}>
+                <Clock size={14} className={styles.metaIcon} aria-hidden="true" />
+                3-day residential intensive
+              </span>
+              <span className={styles.metaItem}>
+                <Users size={14} className={styles.metaIcon} aria-hidden="true" />
+                25 founders, by application
+              </span>
+            </div>
+          </Reveal>
+
+          {/* <Reveal delay={0.3}>
             <div className={styles.actions}>
               <BookCallButton  showArrow>
                 Register Now
@@ -45,7 +56,7 @@ export default function Hero() {
                 See How It Works
               </Button>
             </div>
-          </Reveal>
+          </Reveal> */}
 
           <Reveal stagger delay={0.4} className={styles.trustRow}>
             {TRUST_INDICATORS.map((item, idx) => (
@@ -59,15 +70,27 @@ export default function Hero() {
             ))}
           </Reveal>
 
+          <Reveal delay={0.3}>
+            <div className={styles.actions}>
+              <BookCallButton  showArrow>
+                Join the wait List 
+              </BookCallButton>
+              <Button href="#transformation" variant="secondary">
+                See How It Works
+              </Button>
+            </div>
+          </Reveal>   
+
           
         </div>
 
         <HeroVisual />
-
-        <Reveal delay={0.3} className={styles.para}>
-          <p>Build the Clarity - Lead the Company - Become the Founder.</p>
-        </Reveal>
       </div>
+
+      <Reveal delay={0.2} className={styles.taglineSection}>
+        <p className={styles.para}>Build Clarity - Lead the Company - Become the Founder.</p>
+      </Reveal>
     </section>
   );
 }
+ // GOAT Color--->c69f64 

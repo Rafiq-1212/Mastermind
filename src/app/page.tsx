@@ -7,8 +7,8 @@ import Mentor from "@/components/sections/Mentor";
 import Features from "@/components/sections/Features";
 import Outcomes from "@/components/sections/Outcomes";
 import SocialProof from "@/components/sections/SocialProof";
-import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
+import UrgencySection from "@/components/sections/urgency";
 
 export default function Home() {
   return (
@@ -17,10 +17,11 @@ export default function Home() {
       <main className="relative z-[1]">
         <Hero />
         <Transformation />
-        <Mentor portraitSrc="/men-nobg.png" />
-        <Features />
+        <Mentor portraitSrc="/alfred.jpg" />
         <Outcomes />
+        <Features />
         <SocialProof />
+        <UrgencySection/>
         {/* <FAQ /> */}
         <FinalCTA />
       </main>

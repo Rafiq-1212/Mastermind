@@ -11,7 +11,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding-block: clamp(4rem, 3rem + 4vw, 6rem);
-  padding-inline: clamp(16px, 12px + 1.6vw, 32px);
+  padding-inline: clamp(24px, 16px + 1.6vw, 40px);
   position: relative;
   z-index: 1;
 }
@@ -29,27 +29,42 @@
 }
 
 .portraitCard {
-  padding: 20px;
-  background: var(--mentor-card);
-  border: 1px solid var(--border-strong);
-  border-radius: 28px;
-  box-shadow: var(--shadow-soft);
+  width: min(380px, 100%);
+  aspect-ratio: 2 / 3;
 }
 
 .frame {
   position: relative;
-  width: clamp(220px, 180px + 14vw, 420px);
-  aspect-ratio: 280 / 340;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  padding-top: clamp(14px, 1.5vw + 10px, 28px);
+  box-sizing: border-box;
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  /* border: 1px solid rgba(var(--accent-rgb), 0.3); */
+  /* box-shadow: var(--shadow-soft); */
 }
 
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(8, 10, 20, 0.32) 100%);
+  pointer-events: none;
+}
 
-
+@media (max-width: 767px) {
+  .frame {
+    border-radius: 14px;
+  }
+}
 .frameGlow {
   position: absolute;
   inset: -45%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.07) 0%, transparent 60%);
+  border-radius: 24px;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.12) 0%, transparent 60%);
   filter: blur(80px);
   z-index: -1;
 }
@@ -72,44 +87,9 @@
   position: relative;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: bottom;
-
-  /* Fades the image edges into --mentor-bg instead of a hard rectangle,
-     so it visually dissolves into the page background rather than
-     sitting on top of it like a card */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 10%,
-    black 58%,
-    rgba(0, 0, 0, 0.8) 80%,
-    transparent 100%
-  ),
-  linear-gradient(
-    to right,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 10%,
-    black 58%,
-    rgba(0, 0, 0, 0.8) 80%,
-    transparent 100%
-  ),
-  linear-gradient(
-    to right,
-    transparent 0%,
-    black 12%,
-    black 88%,
-    transparent 100%
-  );
-  mask-composite: intersect;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(1.22) contrast(1.02);
 }
 .signatureBadge {
   position: absolute;
@@ -140,12 +120,12 @@
   text-align: center;
 }
 
-.contentCol {
+/* .contentCol {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-}
+} */
 
 .sectionTag {
   font-size: 0.8rem;
@@ -164,6 +144,21 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.contentCol .greeting {
+  display: block;
+  color: var(--mentor-text);
+}
+
+.name {
+  background: linear-gradient(135deg, #8a6c38 0%, #ba9a63 25%, #e6cb95 45%, #c2a36b 55%, #a6844d 75%, #664d24 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 1.08em;
 }
 
 .subhead {
@@ -288,7 +283,20 @@
     gap: 3.5rem;
   }
 
+  .portraitCard {
+    max-width: 230px;
+  }
+
+  .contentCol {
+    text-align: center;
+    align-items: center;
+  }
+
   .contentCol h2 {
+    align-items: center;
+  }
+
+  .bio {
     align-items: center;
   }
 

@@ -116,8 +116,8 @@ export default function BookCallModal() {
             </button>
 
             <div className={styles.header}>
-              <h2 id="book-call-title">Let&apos;s Build Your Next Stage.</h2>
-              <p>15-minute call. No pitch. Just clarity on your next move.</p>
+              <h2 id="book-call-title">Tell Us About Your Business.</h2>
+              <p>A few quick questions so our team can prepare before reaching out.</p>
             </div>
 
             <BookCallForm />

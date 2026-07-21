@@ -24,3 +24,27 @@ model Application {
 
   createdAt   DateTime @default(now())
 }
+
+// The client-intake questionnaire (name, business details, income,
+// services interested in, etc.) — a separate funnel from Application
+// (the short "book a call" qualification form), so it gets its own table
+// rather than reshaping Application's columns out from under its existing rows.
+model ClientIntake {
+  id               Int      @id @default(autoincrement())
+  name             String
+  email            String
+  dob              String?
+  phone            String
+  businessType     String
+  industryDuration String
+  incomeLevel      String
+  incomeTarget     String
+  meetingTargets   String
+  servicesLooking  String[]
+  websiteDetails   String
+  socialLinks      String
+  investmentReady  String
+  foundUs          String[]
+
+  createdAt        DateTime @default(now())
+}

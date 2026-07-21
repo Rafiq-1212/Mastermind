@@ -1,36 +1,80 @@
 "use client";
 
 import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Button from "@/components/ui/Button";
 import FloatingField from "@/components/ui/FloatingField";
-import Select from "@/components/ui/Select";
+import RadioGroup from "@/components/ui/RadioGroup";
+import CheckboxGroup from "@/components/ui/CheckboxGroup";
 import { useSafeReducedMotion } from "@/lib/useSafeReducedMotion";
 import styles from "./BookCallForm.module.css";
 
-const ROLE_OPTIONS = [
-  { value: "founder_ceo", label: "Founder / CEO" },
-  { value: "co_founder", label: "Co-Founder" },
-  { value: "managing_director", label: "Managing Director" },
-  { value: "other", label: "Other" },
+const INDUSTRY_DURATION_OPTIONS = [
+  { value: "0-3 years", label: "0-3 years" },
+  { value: "3-5 years", label: "3-5 years" },
+  { value: "5+ years", label: "5+ years" },
 ];
 
-const REVENUE_OPTIONS = [
-  { value: "3_4cr", label: "₹3–4 Cr / year" },
-  { value: "4_6cr", label: "₹4–6 Cr / year" },
-  { value: "6_10cr", label: "₹6–10 Cr / year" },
-  { value: "10cr_plus", label: "Above ₹10 Cr / year" },
+const INCOME_LEVEL_OPTIONS = [
+  { value: "Less than 3,00,000 INR", label: "Less than 3,00,000 INR" },
+  { value: "3,00,000 INR - 8,00,000 INR", label: "3,00,000 INR - 8,00,000 INR" },
+  { value: "8,00,000 INR - 15,00,000 INR", label: "8,00,000 INR - 15,00,000 INR" },
+  { value: "15,00,000+ INR", label: "15,00,000+ INR" },
+];
+
+const YES_NO_OPTIONS = [
+  { value: "Yes", label: "Yes" },
+  { value: "No", label: "No" },
+];
+
+const SERVICE_OPTIONS = [
+  { value: "Personal Branding", label: "Personal Branding" },
+  { value: "Branding", label: "Branding" },
+  { value: "Consultation", label: "Consultation" },
+];
+
+const FOUND_US_OPTIONS = [
+  { value: "GOAT Media Insta page", label: "GOAT Media Insta page" },
+  { value: "Kennet Alphy's Instagram", label: "Kennet Alphy's Instagram" },
+  { value: "Alfred Joshua's Instagram", label: "Alfred Joshua's Instagram" },
+  { value: "Kennet Alphy's LinkedIn", label: "Kennet Alphy's LinkedIn" },
+  { value: "Alfred Joshua's LinkedIn", label: "Alfred Joshua's LinkedIn" },
+  { value: "Others", label: "Others" },
 ];
 
 const INITIAL_FORM = {
   name: "",
   email: "",
-  company: "",
-  revenue: "",
-  role: "founder_ceo",
-  bottleneck: "",
+  dob: "",
+  phone: "",
+  businessType: "",
+  industryDuration: "",
+  incomeLevel: "",
+  incomeTarget: "",
+  meetingTargets: "",
+  servicesLooking: [] as string[],
+  websiteDetails: "",
+  socialLinks: "",
+  investmentReady: "",
+  foundUs: [] as string[],
 };
+
+const REQUIRED_TEXT_FIELDS = [
+  "name",
+  "email",
+  "dob",
+  "phone",
+  "businessType",
+  "industryDuration",
+  "incomeLevel",
+  "incomeTarget",
+  "meetingTargets",
+  "websiteDetails",
+  "socialLinks",
+  "investmentReady",
+] as const;
 
 export default function BookCallForm() {
   const [formData, setFormData] = useState(INITIAL_FORM);
@@ -38,27 +82,35 @@ export default function BookCallForm() {
   const [formError, setFormError] = useState("");
   const reduceMotion = useSafeReducedMotion();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (formError) setFormError("");
   };
 
-  const handleSelectChange = (name: string) => (value: string) => {
+  const handleRadioChange = (name: string) => (value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (formError) setFormError("");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleCheckboxChange = (name: "servicesLooking" | "foundUs") => (values: string[]) => {
+    setFormData((prev) => ({ ...prev, [name]: values }));
+    if (formError) setFormError("");
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.company || !formData.revenue) {
-      setFormError("Please fill in all required fields to request your call.");
+    const missingText = REQUIRED_TEXT_FIELDS.some((field) => !formData[field]);
+    const missingChoices = formData.servicesLooking.length === 0 || formData.foundUs.length === 0;
+
+    if (missingText || missingChoices) {
+      setFormError("Please fill in all required fields to submit your application.");
       return;
     }
 
     try {
-      const response = await fetch("/api/apply", {
+      const response = await fetch("/api/client-intake", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -94,10 +146,10 @@ export default function BookCallForm() {
           </div>
           <h3>Request Received</h3>
           <p>
-            Thank you, <strong>{formData.name}</strong>. We&apos;ve received your strategy call request.
+            Thank you, <strong>{formData.name}</strong>. We&apos;ve received your application.
           </p>
           <p className={styles.successNext}>
-            Our team will review your details and reach out within 24 hours to schedule your call via{" "}
+            Our team will review your details and reach out within 24 hours via{" "}
             <strong>{formData.email}</strong>.
           </p>
           <Button
@@ -127,7 +179,7 @@ export default function BookCallForm() {
           )}
 
           <FloatingField
-            label="Full Name *"
+            label="Your name *"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
@@ -137,7 +189,7 @@ export default function BookCallForm() {
           />
 
           <FloatingField
-            label="Business Email *"
+            label="Your email *"
             name="email"
             type="email"
             value={formData.email}
@@ -147,51 +199,132 @@ export default function BookCallForm() {
             error={!!formError && !formData.email}
           />
 
-          <div className={styles.grid2}>
-            <FloatingField
-              label="Company Name *"
-              name="company"
-              value={formData.company}
-              onChange={handleInputChange}
-              placeholder="e.g. Apex Digital"
-              required
-              error={!!formError && !formData.company}
-            />
-            <Select
-              label="Primary Role *"
-              name="role"
-              value={formData.role}
-              onValueChange={handleSelectChange("role")}
-              options={ROLE_OPTIONS}
-              required
-            />
-          </div>
-
-          <Select
-            label="Current Annual Revenue *"
-            name="revenue"
-            value={formData.revenue}
-            onValueChange={handleSelectChange("revenue")}
-            options={REVENUE_OPTIONS}
-            placeholder="Select range..."
+          <FloatingField
+            label="Your date of birth *"
+            name="dob"
+            type="date"
+            value={formData.dob}
+            onChange={handleInputChange}
+            max={new Date().toISOString().slice(0, 10)}
             required
-            error={!!formError && !formData.revenue}
+            error={!!formError && !formData.dob}
           />
 
           <FloatingField
-            label="What's your biggest bottleneck right now?"
-            name="bottleneck"
+            label="What is your phone number? *"
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            onChange={handleInputChange}
+            placeholder="e.g. +91 98765 43210"
+            required
+            error={!!formError && !formData.phone}
+          />
+
+          <FloatingField
+            label="What type of business do you currently have? (Short Explanation) *"
+            name="businessType"
             as="textarea"
             rows={3}
-            value={formData.bottleneck}
+            value={formData.businessType}
             onChange={handleInputChange}
-            placeholder="e.g. I'm still the bottleneck on every major decision..."
+            placeholder="Tell us about your business"
+            required
+            error={!!formError && !formData.businessType}
+          />
+
+          <RadioGroup
+            label="How long you have been in this industry? *"
+            name="industryDuration"
+            value={formData.industryDuration}
+            onChange={handleRadioChange("industryDuration")}
+            options={INDUSTRY_DURATION_OPTIONS}
+            required
+            error={!!formError && !formData.industryDuration}
+          />
+
+          <RadioGroup
+            label="What is your current income level? *"
+            name="incomeLevel"
+            value={formData.incomeLevel}
+            onChange={handleRadioChange("incomeLevel")}
+            options={INCOME_LEVEL_OPTIONS}
+            required
+            error={!!formError && !formData.incomeLevel}
+          />
+
+          <FloatingField
+            label="What is your annual income target? *"
+            name="incomeTarget"
+            value={formData.incomeTarget}
+            onChange={handleInputChange}
+            placeholder="e.g. 25,00,000 INR"
+            required
+            error={!!formError && !formData.incomeTarget}
+          />
+
+          <RadioGroup
+            label="Are you meeting your monthly targets? *"
+            name="meetingTargets"
+            value={formData.meetingTargets}
+            onChange={handleRadioChange("meetingTargets")}
+            options={YES_NO_OPTIONS}
+            required
+            error={!!formError && !formData.meetingTargets}
+          />
+
+          <CheckboxGroup
+            label="Are you below 27? *"
+            name="servicesLooking"
+            values={formData.servicesLooking}
+            onChange={handleCheckboxChange("servicesLooking")}
+            options={SERVICE_OPTIONS}
+            error={!!formError && formData.servicesLooking.length === 0}
+          />
+
+          <FloatingField
+            label="Your Website Details *"
+            name="websiteDetails"
+            value={formData.websiteDetails}
+            onChange={handleInputChange}
+            placeholder="e.g. www.yourbusiness.com"
+            required
+            error={!!formError && !formData.websiteDetails}
+          />
+
+          <FloatingField
+            label="Add your Social Media Links (Instagram or LinkedIn) *"
+            name="socialLinks"
+            value={formData.socialLinks}
+            onChange={handleInputChange}
+            placeholder="e.g. instagram.com/yourhandle"
+            required
+            error={!!formError && !formData.socialLinks}
+          />
+
+          <FloatingField
+            label="Are you ready to invest between 1L - 1.5L monthly for your brand growth? *"
+            name="investmentReady"
+            value={formData.investmentReady}
+            onChange={handleInputChange}
+            placeholder="e.g. Yes"
+            required
+            error={!!formError && !formData.investmentReady}
+          />
+
+          <CheckboxGroup
+            label="How did you find us? *"
+            name="foundUs"
+            values={formData.foundUs}
+            onChange={handleCheckboxChange("foundUs")}
+            options={FOUND_US_OPTIONS}
+            error={!!formError && formData.foundUs.length === 0}
           />
 
           <Button type="submit" variant="primary" className={styles.submitBtn}>
-            Book My Strategy Call
+            Submit Application
           </Button>
-          <p className={styles.formNotice}>By application only. Limited calls accepted each month.</p>
+          <p className={styles.formNotice}>By application only. Limited slots accepted each month.</p>
         </motion.form>
       )}
     </AnimatePresence>

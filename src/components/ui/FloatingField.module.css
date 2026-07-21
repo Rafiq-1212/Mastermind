@@ -22,6 +22,18 @@
   height: 56px;
 }
 
+.field[type="date"] {
+  color-scheme: dark;
+}
+
+/* An empty required date input still renders its "mm/dd/yyyy" segments,
+   which sit under the label until it floats on focus/value. Hide them
+   only in that idle (unfocused + no value) state so it looks like every
+   other field before interaction. */
+.field[type="date"]:invalid:not(:focus) {
+  color: transparent;
+}
+
 .field:focus {
   outline: none;
   border-color: var(--accent);
@@ -32,12 +44,16 @@
 .label {
   position: absolute;
   left: 1rem;
+  right: 1rem;
   top: 1.05rem;
   font-size: 0.95rem;
   color: var(--text-muted);
   pointer-events: none;
   transform-origin: left top;
   transition: transform 180ms ease, color 180ms ease, top 180ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .labelFloated {

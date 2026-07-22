@@ -1,0 +1,23 @@
+.wrapper {
+  position: fixed;
+  top: clamp(10px, 2vw, 1px);
+  left: clamp(12px, 2vw, 24px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  /* position:fixed isolates this into its own stacking context, so
+     mix-blend-mode on .image can't see the real page background painted
+     underneath (Background is a separate fixed layer). Matching the
+     wrapper's own background to bg-void gives the blend a backdrop that's
+     identical to the surrounding page, so the logo's black canvas resolves
+     away seamlessly instead of showing as a boxed rectangle. */
+  background: var(--bg-void);
+}
+
+.image {
+  width: clamp(72px, 9vw, 200px);
+  height: 9rem;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}

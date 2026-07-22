@@ -35,7 +35,6 @@ export default function FloatingField({
 }: FloatingFieldProps) {
   const id = useId();
   const [focused, setFocused] = useState(false);
-  const floated = focused || value.length > 0;
 
   const sharedProps = {
     id,
@@ -45,21 +44,21 @@ export default function FloatingField({
     onFocus: () => setFocused(true),
     onBlur: () => setFocused(false),
     className: `${styles.field} ${error ? styles.fieldError : ""}`,
-    placeholder: focused ? placeholder : "",
+    placeholder,
     required,
     "aria-required": required,
   };
 
   return (
     <div className={`${styles.group} ${error ? styles.groupError : ""}`}>
+      <label htmlFor={id} className={`${styles.label} ${focused ? styles.labelFocused : ""}`}>
+        {label}
+      </label>
       {as === "textarea" ? (
         <textarea {...sharedProps} rows={rows ?? 3} />
       ) : (
         <input {...sharedProps} type={type} min={min} max={max} />
       )}
-      <label htmlFor={id} className={`${styles.label} ${floated ? styles.labelFloated : ""}`}>
-        {label}
-      </label>
     </div>
   );
 }

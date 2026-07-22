@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { saveApplication } from "../../../service/apply_service";
-import { appendRecordToExportFile } from "@/lib/excelExport";
 
 export async function POST(request: Request) {
   try {
@@ -23,11 +22,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const created = await saveApplication(body);
-
-    // Additive export step: never lets an export failure fail the
-    // submission itself (appendRecordToExportFile swallows its own errors).
-    await appendRecordToExportFile(created);
+    await saveApplication(body);
 
     return NextResponse.json({
       success: true,

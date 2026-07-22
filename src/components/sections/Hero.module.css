@@ -4,7 +4,7 @@
   /* Top padding used to be much larger than bottom, which pushed the
      vertically-centered content down toward the bottom edge — narrowed
      the gap (and nudged bottom slightly larger) to shift it up a bit. */
-  padding-block: clamp(4.5rem, 3.5rem + 2.5vw, 5.5rem) clamp(4rem, 3.5rem + 2vw, 5rem);
+  padding-block: clamp(4.5rem, 4.5rem + 2.5vw, 5.5rem) clamp(4rem, 3.5rem + 2vw, 5rem);
   padding-inline: clamp(16px, 12px + 1.6vw, 32px);
   display: flex;
   flex-direction: column;

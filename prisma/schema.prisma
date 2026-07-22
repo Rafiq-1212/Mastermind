@@ -44,6 +44,7 @@ model ClientIntake {
   socialLinks      String
   investmentReady  String
   foundUs          String[]
+  foundUsOther     String?
 
   createdAt        DateTime @default(now())
 }

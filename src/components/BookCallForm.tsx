@@ -52,6 +52,7 @@ const INITIAL_FORM = {
   socialLinks: "",
   investmentReady: "",
   foundUs: [] as string[],
+  foundUsOther: "",
 };
 
 const REQUIRED_TEXT_FIELDS = [
@@ -87,7 +88,13 @@ export default function BookCallForm() {
   };
 
   const handleCheckboxChange = (name: "foundUs") => (values: string[]) => {
-    setFormData((prev) => ({ ...prev, [name]: values }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: values,
+      // Clear the "please specify" detail once "Others" is deselected, so a
+      // stale value from an earlier selection never gets submitted silently.
+      ...(name === "foundUs" && !values.includes("Others") ? { foundUsOther: "" } : {}),
+    }));
     if (formError) setFormError("");
   };
 
@@ -96,8 +103,9 @@ export default function BookCallForm() {
 
     const missingText = REQUIRED_TEXT_FIELDS.some((field) => !formData[field]);
     const missingChoices = formData.foundUs.length === 0;
+    const missingOtherDetail = formData.foundUs.includes("Others") && !formData.foundUsOther.trim();
 
-    if (missingText || missingChoices) {
+    if (missingText || missingChoices || missingOtherDetail) {
       setFormError("Please fill in all required fields to submit your application.");
       return;
     }
@@ -277,7 +285,7 @@ export default function BookCallForm() {
           />
 
           <FloatingField
-            label="Add your Social Media Links (Instagram or LinkedIn) *"
+            label="Social Media Links*"
             name="socialLinks"
             value={formData.socialLinks}
             onChange={handleInputChange}
@@ -286,12 +294,12 @@ export default function BookCallForm() {
             error={!!formError && !formData.socialLinks}
           />
 
-          <FloatingField
-            label="Are you ready to invest between 1L - 1.5L monthly for your brand growth? *"
+          <RadioGroup
+            label="Are you ready to invest 1.5 for 1yr mentorship? *"
             name="investmentReady"
             value={formData.investmentReady}
-            onChange={handleInputChange}
-            placeholder="e.g. Yes"
+            onChange={handleRadioChange("investmentReady")}
+            options={YES_NO_OPTIONS}
             required
             error={!!formError && !formData.investmentReady}
           />
@@ -304,6 +312,18 @@ export default function BookCallForm() {
             options={FOUND_US_OPTIONS}
             error={!!formError && formData.foundUs.length === 0}
           />
+
+          {formData.foundUs.includes("Others") && (
+            <FloatingField
+              label="How did you get this information? *"
+              name="foundUsOther"
+              value={formData.foundUsOther}
+              onChange={handleInputChange}
+              placeholder="e.g. Referred by a friend"
+              required
+              error={!!formError && !formData.foundUsOther.trim()}
+            />
+          )}
 
           <Button type="submit" variant="primary" className={styles.submitBtn}>
             Submit Application

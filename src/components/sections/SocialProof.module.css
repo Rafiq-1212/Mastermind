@@ -66,16 +66,34 @@
 
 /* Video card */
 
+.videoCard {
+  transition: border-color 200ms ease, box-shadow 300ms ease, transform 300ms ease;
+}
+
+.videoCard:hover {
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(var(--accent-rgb), 0.1);
+  transform: translateY(-4px);
+}
+
 .thumb {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 360px;
+  flex: 1 1 auto;
+  min-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-elevated);
   overflow: hidden;
+}
+
+.thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  pointer-events: none;
 }
 
 .posterImg {
@@ -85,12 +103,18 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  transition: transform 500ms ease;
+}
+
+.videoCard:hover .posterImg {
+  transform: scale(1.05);
 }
 
 .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.85) 100%);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 20%, transparent 55%, rgba(0, 0, 0, 0.88) 100%);
 }
 
 .avatarFallback {
@@ -109,33 +133,53 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Understated at rest — a glass circle, not a bold solid button — with
+     the gold accent reserved for hover so it doesn't fight the photo. */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.75;
+  cursor: pointer;
+  box-shadow: none;
+  transition: opacity 200ms ease, transform 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.playBtn:hover {
+  opacity: 1;
   background: var(--accent-500);
   color: var(--bg-void);
-  cursor: pointer;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 0 6px rgba(var(--accent-rgb), 0.12);
 }
 
-.overlayAuthor {
-  position: absolute;
-  left: 1.1rem;
-  bottom: 1rem;
+.videoCaption {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.3rem;
+  padding: 1.2rem 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.015);
 }
 
-.overlayAuthor .name {
-  color: var(--text-primary);
+.videoCaption .name {
+  letter-spacing: -0.01em;
 }
 
-.overlayAuthor .role {
-  color: var(--text-secondary);
+.videoCaption .role {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* Text card */
@@ -183,7 +227,7 @@
 .name {
   font-weight: 700;
   font-size: 0.9rem;
-  color: var(--text);
+  color: var(--accent-400);
 }
 
 .role {
@@ -226,29 +270,53 @@
   height: 100%;
   border: none;
   background: #000;
+  /* Each testimonial is a different source clip with its own aspect ratio
+     and framing. A shared `cover` crop looks fine on the clip it was tuned
+     for but slices into whichever one doesn't match, so during playback we
+     show the full frame instead (letterboxed on black if needed) rather
+     than risk cutting anyone off. */
+  object-fit: contain;
+  object-position: center;
 }
 
 .stopBtn {
   position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
+  top: 0.75rem;
+  right: 0.75rem;
   z-index: 1;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--text);
   cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
 }
 
 .stopBtn:hover {
   color: var(--accent-400);
-  border-color: var(--border-strong);
-  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  background: rgba(0, 0, 0, 0.75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoCard,
+  .posterImg,
+  .playBtn {
+    transition: none;
+  }
+
+  .videoCard:hover,
+  .videoCard:hover .posterImg,
+  .playBtn:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 1023px) {

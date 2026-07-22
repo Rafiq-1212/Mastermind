@@ -1,4 +1,5 @@
 import Background from "@/components/Background";
+import Logo from "@/components/Logo";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
@@ -14,13 +15,14 @@ export default function Home() {
   return (
     <div className="relative min-h-screen">
       <Background />
+      {/* <Logo /> */}
       <main className="relative z-[1]">
         <Hero />
         <Transformation />
         <Mentor portraitSrc="/alfred.jpg" />
         <Outcomes />
         <Features />
-        {/* <SocialProof /> */}
+        <SocialProof />
         <UrgencySection/>
         {/* <FAQ /> */}
         <FinalCTA />

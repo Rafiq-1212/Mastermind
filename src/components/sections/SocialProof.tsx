@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Play, Star, User, X, Quote } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import RevealItem from "@/components/RevealItem";
-import styles from "./SocialProof.module.css";
+import styles from "./SocialProof.module.css"
 
 interface Testimonial {
   name: string;
@@ -18,29 +18,23 @@ interface Testimonial {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Richard",
-    role: "Sales, CNC",
-    videoUrl: "https://www.youtube.com/shorts/-3jo1GHUrVc",
-    posterUrl: "/thumnial.jpg",
+    name: "PAVAN",
+    role: "Career Council",
+    videoUrl: "/testimonial-1.mp4",
+    posterUrl: "/pavan_img.jpg",
   },
   {
-    name: "[Founder Name]",
-    role: "[Title, Company]",
-    title: "[Result headline goes here]",
-    description: "[Client testimonial quote goes here — replace with a real result.]",
+    name: "PUSHPA",
+    role: "Makeup Artist",
+    videoUrl: "/Pushpa.mp4",
+    posterUrl: "/pushpa_img.jpg",
   },
   {
-    name: "[Founder Name]",
-    role: "[Title, Company]",
-    title: "[Result headline goes here]",
-    description: "[Client testimonial quote goes here — replace with a real result.]",
-  },
-  // {
-  //   name: "[Founder Name]",
-  //   role: "[Title, Company]",
-  //   title: "[Result headline goes here]",
-  //   description: "[Client testimonial quote goes here — replace with a real result.]",
-  // },
+    name: "OVIYA",
+    role: "Malola Foods Founder ",
+    videoUrl: "/Oviya.mp4",
+    posterUrl: "/oviya_img1.jpeg",
+  }
 ];
 
 function getYouTubeId(url: string): string | null {
@@ -71,9 +65,10 @@ export default function SocialProof() {
       <Reveal stagger className={styles.grid}>
         {TESTIMONIALS.map((t, idx) => {
           const videoId = t.videoUrl ? getYouTubeId(t.videoUrl) : null;
-          const isPlaying = playingIdx === idx && videoId;
+          const isLocalVideo = Boolean(t.videoUrl) && !videoId;
+          const isPlaying = playingIdx === idx && (Boolean(videoId) || isLocalVideo);
 
-          const isVideoCard = Boolean(videoId);
+          const isVideoCard = Boolean(videoId) || isLocalVideo;
           const initials = t.name
             .replace(/[[\]]/g, "")
             .split(" ")
@@ -84,18 +79,29 @@ export default function SocialProof() {
 
           if (isVideoCard) {
             return (
-              <RevealItem className={styles.card} key={`${t.name}-${idx}`}>
+              <RevealItem className={`${styles.card} ${styles.videoCard}`} key={`${t.name}-${idx}`}>
                 <div className={styles.thumb}>
                   {isPlaying ? (
                     <>
-                      <iframe
-                        key={videoId}
-                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
-                        title={`${t.name} video testimonial`}
-                        className={styles.video}
-                        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                        allowFullScreen
-                      />
+                      {videoId ? (
+                        <iframe
+                          key={videoId}
+                          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                          title={`${t.name} video testimonial`}
+                          className={styles.video}
+                          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <video
+                          key={t.videoUrl}
+                          src={t.videoUrl}
+                          className={styles.video}
+                          controls
+                          autoPlay
+                          playsInline
+                        />
+                      )}
                       <button
                         type="button"
                         className={styles.stopBtn}
@@ -130,15 +136,17 @@ export default function SocialProof() {
                         onClick={() => setPlayingIdx(idx)}
                         aria-label={`Play video testimonial from ${t.name}`}
                       >
-                        <Play size={18} fill="currentColor" aria-hidden="true" />
+                        <Play size={13} fill="currentColor" aria-hidden="true" />
                       </button>
-
-                      <div className={styles.overlayAuthor}>
-                        <span className={styles.name}>{t.name}</span>
-                        <span className={styles.role}>{t.role}</span>
-                      </div>
                     </>
                   )}
+                </div>
+
+                {/* Kept below the video (rather than overlaid on it) so the
+                    name/niche stays visible while playing too. */}
+                <div className={styles.videoCaption}>
+                  <span className={styles.name}>{t.name}</span>
+                  <span className={styles.role}>{t.role}</span>
                 </div>
               </RevealItem>
             );

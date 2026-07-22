@@ -3,9 +3,9 @@ import styles from "./Urgency.module.css";
 
 export default function UrgencySection() {
   const stats = [
-    { value: "45+ Applications", label: "Already waiting" },
-    { value: "25 seats", label: "Available this Residency" },
-    { value: "Final Deadline ", label: "No extensions granted" },
+    { value: "71 Day to go", label: "Until Application Close" },
+    { value: "45+ Applications", label: "Already Waiting" },
+    { value: "25 seats", label: "Available This Residency" },
   ];
 
   const ifYouWait = [

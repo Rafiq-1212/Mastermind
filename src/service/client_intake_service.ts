@@ -14,6 +14,7 @@ export async function saveClientIntake(data: {
   socialLinks: string;
   investmentReady: string;
   foundUs: string[];
+  foundUsOther?: string;
 }) {
   return prisma.clientIntake.create({
     data: {
@@ -30,6 +31,7 @@ export async function saveClientIntake(data: {
       socialLinks: data.socialLinks,
       investmentReady: data.investmentReady,
       foundUs: data.foundUs,
+      foundUsOther: data.foundUsOther || null,
     },
   });
 }

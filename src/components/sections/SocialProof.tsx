@@ -11,6 +11,7 @@ interface Testimonial {
   role: string;
   videoUrl?: string;
   posterUrl?: string;
+  posterPosition?: string;
   title?: string;
   description?: string;
   rating?: number;
@@ -19,21 +20,21 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     name: "PAVAN",
-    role: "Career Council",
+    role: "Career Consultant",
     videoUrl: "https://www.youtube.com/shorts/8WpYPLZ7TzE",
     posterUrl: "/pavan_img.jpg",
   },
   {
-    name: "PUSHPA",
-    role: "Makeup Artist",
+    name: "PUSHPALATHA",
+    role: "Makeup Artist & Trainer",
     videoUrl: "https://www.youtube.com/watch?v=qjVYETJP1HA",
     posterUrl: "/Pushpa_img.jpg",
   },
   {
-    name: "OVIYA",
-    role: "Malola Foods Founder ",
+    name: "OVYA VIGNESH",
+    role: "Founder Of Malola Foods ",
     videoUrl: "https://www.youtube.com/shorts/E9KQ3CQzDhA",
-    posterUrl: "/oviya_img1.jpeg",
+    posterUrl: "/oviya.jpg",
   }
 ];
 
@@ -119,6 +120,7 @@ export default function SocialProof() {
                           src={t.posterUrl}
                           alt=""
                           className={styles.posterImg}
+                          style={t.posterPosition ? { objectPosition: t.posterPosition } : undefined}
                           loading="lazy"
                           decoding="async"
                         />

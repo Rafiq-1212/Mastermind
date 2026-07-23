@@ -7,7 +7,7 @@ import Transformation from "@/components/sections/Transformation";
 import Mentor from "@/components/sections/Mentor";
 import Features from "@/components/sections/Features";
 import Outcomes from "@/components/sections/Outcomes";
-// import SocialProof from "@/components/sections/SocialProof";
+import SocialProof from "@/components/sections/SocialProof";
 import FinalCTA from "@/components/sections/FinalCTA";
 import UrgencySection from "@/components/sections/urgency";
 
@@ -22,9 +22,8 @@ export default function Home() {
         <Mentor portraitSrc="/alfred.jpg" />
         <Outcomes />
         <Features />
-        {/* <SocialProof /> */}
+        <SocialProof />
         <UrgencySection/>
-        {/* <FAQ /> */}
         <FinalCTA />
       </main>
       <Footer />

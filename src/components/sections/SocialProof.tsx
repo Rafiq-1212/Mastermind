@@ -26,7 +26,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     name: "PUSHPA",
     role: "Makeup Artist",
-    videoUrl: "https://www.youtube.com/shorts/8WpYPLZ7TzE",
+    videoUrl: "https://www.youtube.com/watch?v=qjVYETJP1HA",
     posterUrl: "/Pushpa_img.jpg",
   },
   {
